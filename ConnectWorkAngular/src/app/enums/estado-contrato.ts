@@ -1,0 +1,6 @@
+export enum EstadoContrato {
+    PENDIENTE = 'PENDIENTE',
+    EN_PROGRESO = 'EN_PROGRESO',
+    COMPLETADO = 'COMPLETADO',
+    RECHAZADO = 'RECHAZADO'
+}
