@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConexionDB {
 
 
-    private static final String URL_MYSQL = "jdbc:mysql://localhost:3306/horizonte_sin_limites";
+    private static final String URL_MYSQL = "jdbc:mysql://localhost:3306/connect_work_db";
     private static final String USER = "user_proyecto_final";
     private static final String PASSWORD = "12345";
 
