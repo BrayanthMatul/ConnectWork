@@ -1,16 +1,18 @@
 package models;
 
+import java.math.BigDecimal;
+
 public class Proyecto {
     private int id;
     private int id_cliente;
     private int id_categoria;
     private String titulo;
     private String descripcion;
-    private double presupuesto_maximo;
+    private BigDecimal presupuesto_maximo;
     private String fecha_limite;
     private String estado;
 
-    public Proyecto(int id, int id_cliente, int id_categoria, String titulo, String descripcion, double presupuesto_maximo, String fecha_limite, String estado) {
+    public Proyecto(int id, int id_cliente, int id_categoria, String titulo, String descripcion, BigDecimal presupuesto_maximo, String fecha_limite, String estado) {
         this.id = id;
         this.id_cliente = id_cliente;
         this.id_categoria = id_categoria;
@@ -41,7 +43,7 @@ public class Proyecto {
         return descripcion;
     }
 
-    public double getPresupuesto_maximo() {
+    public BigDecimal getPresupuesto_maximo() {
         return presupuesto_maximo;
     }
 

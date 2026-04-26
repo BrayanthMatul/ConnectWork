@@ -1,11 +1,11 @@
 package models;
 
-public class Proyectohabilidades {
+public class ProyectoHabilidad {
     
     private int id_proyecto;
     private int id_habilidad;
 
-    public Proyectohabilidades(int id_proyecto, int id_habilidad) {
+    public ProyectoHabilidad(int id_proyecto, int id_habilidad) {
         this.id_proyecto = id_proyecto;
         this.id_habilidad = id_habilidad;
     }

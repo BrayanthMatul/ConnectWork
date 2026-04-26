@@ -56,5 +56,4 @@ public class Habilidad {
         this.activo = activo;
     }
 
-
 }
