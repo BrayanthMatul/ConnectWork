@@ -1,3 +1,5 @@
+import { Usuario } from "./usuario";
+
 export interface Perfil {
     id_perfil: number;
     cui: string;

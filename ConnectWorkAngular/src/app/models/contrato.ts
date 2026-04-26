@@ -1,7 +1,9 @@
+import { EstadoContrato } from "../enums/estado-contrato";
+
 export interface Contrato {
     id: number;
-    id_propuesta: number;
-    fecha_inicio: Date;
+    idPropuesta: number;
+    fechaInicio: Date;
     monto: number;
     estado: EstadoContrato;
     calificacion: number;
