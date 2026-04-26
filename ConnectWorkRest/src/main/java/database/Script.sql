@@ -110,7 +110,7 @@ CREATE TABLE propuestas (
     monto_ofertado DECIMAL(10, 2) NOT NULL,
     mensaje TEXT NOT NULL,
     fecha_hora DATETIME NOT NULL,
-plazoEntrega INT NOT NULL,
+    plazoEntrega INT NOT NULL,
     estado VARCHAR(50) NOT NULL,
 
     FOREIGN KEY (id_proyecto) REFERENCES proyectos(id),
