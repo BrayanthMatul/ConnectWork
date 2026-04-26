@@ -5,31 +5,31 @@ import java.sql.Date;
 
 public class Perfil{
     
-    private int id_perfil;
+    private int idPerfil;
     private String cui;
     private String telefono;
-    private Date fecha_nacimiento;
+    private Date fechaNacimiento;
     private String direccion;
     private BigDecimal saldo;
     private boolean activo;
-    private boolean perfil_completo;
+    private boolean perfilCompleto;
     private Usuario usuario;
 
-    public Perfil(int id_perfil, String cui, String telefono, Date fecha_nacimiento, String direccion, BigDecimal saldo, boolean activo, boolean perfil_completo, Usuario usuario) {
-        this.id_perfil = id_perfil;
+    public Perfil(int idPerfil, String cui, String telefono, Date fechaNacimiento, String direccion, BigDecimal saldo, boolean activo, boolean perfilCompleto, Usuario usuario) {
+        this.idPerfil = idPerfil;
         this.cui = cui;
         this.telefono = telefono;
-        this.fecha_nacimiento = fecha_nacimiento;
+        this.fechaNacimiento = fechaNacimiento;
         this.direccion = direccion;
         this.saldo = saldo;
         this.activo = activo;
-        this.perfil_completo = perfil_completo;
+        this.perfilCompleto = perfilCompleto;
         this.usuario = usuario;
     }
 
 
-    public int getId_perfil() {
-        return id_perfil;
+    public int getIdPerfil() {
+        return idPerfil;
     }
 
     public String getCui() {
@@ -40,8 +40,8 @@ public class Perfil{
         return telefono;
     }
 
-    public Date getFecha_nacimiento() {
-        return fecha_nacimiento;
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
     public String getDireccion() {
@@ -56,16 +56,16 @@ public class Perfil{
         return activo;
     }
 
-    public boolean isPerfil_completo() {
-        return perfil_completo;
+    public boolean isPerfilCompleto() {
+        return perfilCompleto;
     }
 
     public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setId_perfil(int id_perfil) {
-        this.id_perfil = id_perfil;
+    public void setIdPerfil(int idPerfil) {
+        this.idPerfil = idPerfil;
     }
 
     public void setCui(String cui) {
@@ -76,8 +76,8 @@ public class Perfil{
         this.telefono = telefono;
     }
 
-    public void setFecha_nacimiento(Date fecha_nacimiento) {
-        this.fecha_nacimiento = fecha_nacimiento;
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public void setDireccion(String direccion) {
@@ -92,8 +92,8 @@ public class Perfil{
         this.activo = activo;
     }
 
-    public void setPerfil_completo(boolean perfil_completo) {
-        this.perfil_completo = perfil_completo;
+    public void setPerfilCompleto(boolean perfilCompleto) {
+        this.perfilCompleto = perfilCompleto;
     }
 
     public void setUsuario(Usuario usuario) {

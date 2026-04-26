@@ -2,27 +2,27 @@ package models;
 
 public class FreelancerHabilidad {
     
-    private int id_freelancer;
-    private int id_habilidad;
+    private int idFreelancer;
+    private int idHabilidad;
 
-    public FreelancerHabilidad(int id_freelancer, int id_habilidad) {
-        this.id_freelancer = id_freelancer;
-        this.id_habilidad = id_habilidad;
+    public FreelancerHabilidad(int idFreelancer, int idHabilidad) {
+        this.idFreelancer = idFreelancer;
+        this.idHabilidad = idHabilidad;
     }
 
-    public int getId_freelancer() {
-        return id_freelancer;
+    public int getIdFreelancer() {
+        return idFreelancer;
     }
 
-    public int getId_habilidad() {
-        return id_habilidad;
+    public int getIdHabilidad() {
+        return idHabilidad;
     }
 
-    public void setId_freelancer(int id_freelancer) {
-        this.id_freelancer = id_freelancer;
+    public void setIdFreelancer(int idFreelancer) {
+        this.idFreelancer = idFreelancer;
     }
 
-    public void setId_habilidad(int id_habilidad) {
-        this.id_habilidad = id_habilidad;
+    public void setIdHabilidad(int idHabilidad) {
+        this.idHabilidad = idHabilidad;
     }
 }

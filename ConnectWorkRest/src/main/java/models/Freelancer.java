@@ -3,22 +3,22 @@ package models;
 import java.math.BigDecimal;
 
 public class Freelancer{
-    private int id_freelancer;
+    private int idFreelancer;
     private String biografia;
     private float calificacion;
-    private BigDecimal tarifa_hora;
+    private BigDecimal tarifaHora;
     private Perfil perfil;
     
-    public Freelancer(int id_freelancer, String biografia, float calificacion, BigDecimal tarifa_hora, Perfil perfil) {
-        this.id_freelancer = id_freelancer;
+    public Freelancer(int idFreelancer, String biografia, float calificacion, BigDecimal tarifaHora, Perfil perfil) {
+        this.idFreelancer = idFreelancer;
         this.biografia = biografia;
         this.calificacion = calificacion;
-        this.tarifa_hora = tarifa_hora;
+        this.tarifaHora = tarifaHora;
         this.perfil = perfil;
     }
 
-    public int getId_freelancer() {
-        return id_freelancer;
+    public int getIdFreelancer() {
+        return idFreelancer;
     }
 
     public String getBiografia() {
@@ -29,15 +29,15 @@ public class Freelancer{
         return calificacion;
     }
 
-    public BigDecimal getTarifa_hora() {
-        return tarifa_hora;
+    public BigDecimal getTarifaHora() {
+        return tarifaHora;
     }
 
     public Perfil getPerfil() {
         return perfil;
     }
-    public void setId_freelancer(int id_freelancer) {
-        this.id_freelancer = id_freelancer;
+    public void setIdFreelancer(int idFreelancer) {
+        this.idFreelancer = idFreelancer;
     }
 
     public void setBiografia(String biografia) {
@@ -48,8 +48,8 @@ public class Freelancer{
         this.calificacion = calificacion;
     }
 
-    public void setTarifa_hora(BigDecimal tarifa_hora) {
-        this.tarifa_hora = tarifa_hora;
+    public void setTarifaHora(BigDecimal tarifaHora) {
+        this.tarifaHora = tarifaHora;
     }
 
     public void setPerfil(Perfil perfil) {

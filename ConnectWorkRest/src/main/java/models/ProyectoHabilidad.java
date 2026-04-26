@@ -2,27 +2,27 @@ package models;
 
 public class ProyectoHabilidad {
     
-    private int id_proyecto;
-    private int id_habilidad;
+    private int idProyecto;
+    private int idHabilidad;
 
-    public ProyectoHabilidad(int id_proyecto, int id_habilidad) {
-        this.id_proyecto = id_proyecto;
-        this.id_habilidad = id_habilidad;
+    public ProyectoHabilidad(int idProyecto, int idHabilidad) {
+        this.idProyecto = idProyecto;
+        this.idHabilidad = idHabilidad;
     }
 
-    public int getId_proyecto() {
-        return id_proyecto;
+    public int getIdProyecto() {
+        return idProyecto;
     }
 
-    public int getId_habilidad() {
-        return id_habilidad;
+    public int getIdHabilidad() {
+        return idHabilidad;
     }
 
-    public void setId_proyecto(int id_proyecto) {
-        this.id_proyecto = id_proyecto;
+    public void setIdProyecto(int idProyecto) {
+        this.idProyecto = idProyecto;
     }
 
-    public void setId_habilidad(int id_habilidad) {
-        this.id_habilidad = id_habilidad;
+    public void setIdHabilidad(int idHabilidad) {
+        this.idHabilidad = idHabilidad;
     }
 }

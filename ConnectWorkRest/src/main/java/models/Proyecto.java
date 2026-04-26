@@ -1,25 +1,26 @@
 package models;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 
 public class Proyecto {
     private int id;
-    private int id_cliente;
-    private int id_categoria;
+    private int idCliente;
+    private int idCategoria;
     private String titulo;
     private String descripcion;
-    private BigDecimal presupuesto_maximo;
-    private String fecha_limite;
+    private BigDecimal presupuestoMaximo;
+    private Date fechaLimite;
     private String estado;
 
-    public Proyecto(int id, int id_cliente, int id_categoria, String titulo, String descripcion, BigDecimal presupuesto_maximo, String fecha_limite, String estado) {
+    public Proyecto(int id, int idCliente, int idCategoria, String titulo, String descripcion, BigDecimal presupuestoMaximo, Date fechaLimite, String estado) {
         this.id = id;
-        this.id_cliente = id_cliente;
-        this.id_categoria = id_categoria;
+        this.idCliente = idCliente;
+        this.idCategoria = idCategoria;
         this.titulo = titulo;
         this.descripcion = descripcion;
-        this.presupuesto_maximo = presupuesto_maximo;
-        this.fecha_limite = fecha_limite;
+        this.presupuestoMaximo = presupuestoMaximo;
+        this.fechaLimite = fechaLimite;
         this.estado = estado;
     }
 
@@ -27,12 +28,12 @@ public class Proyecto {
         return id;
     }
 
-    public int getId_cliente() {
-        return id_cliente;
+    public int getIdCliente() {
+        return idCliente;
     }
 
-    public int getId_categoria() {
-        return id_categoria;
+    public int getIdCategoria() {
+        return idCategoria;
     }
 
     public String getTitulo() {
@@ -43,12 +44,12 @@ public class Proyecto {
         return descripcion;
     }
 
-    public BigDecimal getPresupuesto_maximo() {
-        return presupuesto_maximo;
+    public BigDecimal getPresupuestoMaximo() {
+        return presupuestoMaximo;
     }
 
-    public String getFecha_limite() {
-        return fecha_limite;
+    public Date getFechaLimite() {
+        return fechaLimite;
     }
 
     public String getEstado() {

@@ -7,26 +7,26 @@ public class Usuario {
     private int id;
     private String username;
     private String password;
-    private String nombre_completo;
+    private String nombreCompleto;
     private String email;
-    private TipoUsuario tipo_usuario;
+    private TipoUsuario tipoUsuario;
 
-    public Usuario(int id, String username, String password, String nombre_completo, String email, TipoUsuario tipo_usuario) {
+    public Usuario(int id, String username, String password, String nombreCompleto, String email, TipoUsuario tipoUsuario) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.nombre_completo = nombre_completo;
+        this.nombreCompleto = nombreCompleto;
         this.email = email;
-        this.tipo_usuario = tipo_usuario;
+        this.tipoUsuario = tipoUsuario;
     }
 
     public Usuario(Usuario usuario) {
         this.id = usuario.getId();
         this.username = usuario.getUsername();
         this.password = usuario.getPassword();
-        this.nombre_completo = usuario.getNombre_completo();
+        this.nombreCompleto = usuario.getNombreCompleto();
         this.email = usuario.getEmail();
-        this.tipo_usuario = usuario.getTipo_usuario();
+        this.tipoUsuario = usuario.getTipoUsuario();
     }
 
     public int getId() {
@@ -41,16 +41,16 @@ public class Usuario {
         return password;
     }
 
-    public String getNombre_completo() {
-        return nombre_completo;
+    public String getNombreCompleto() {
+        return nombreCompleto;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public TipoUsuario getTipo_usuario() {
-        return tipo_usuario;
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
     }
 
     public void setId(int id) {
@@ -65,16 +65,16 @@ public class Usuario {
         this.password = password;
     }
 
-    public void setNombre_completo(String nombre_completo) {
-        this.nombre_completo = nombre_completo;
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setTipo_usuario(TipoUsuario tipo_usuario) {
-        this.tipo_usuario = tipo_usuario;
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 
 }

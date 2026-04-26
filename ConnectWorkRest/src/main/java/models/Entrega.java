@@ -7,77 +7,77 @@ import enums.EstadoContrato;
 public class Entrega {
 
     private int id;
-    private int id_contrato;
+    private int idContrato;
     private String descripcion;
-    private String archivo_url;
-    private LocalDateTime fecha_hora;
+    private String archivoUrl;
+    private LocalDateTime fechaHora;
     private EstadoContrato estado;
-    private String motivo_rechazo;
+    private String motivoRechazo;
 
-    public Entrega(int id, int id_contrato, String descripcion, String archivo_url, LocalDateTime fecha_hora, EstadoContrato estado, String motivo_rechazo) {
+    public Entrega(int id, int idContrato, String descripcion, String archivoUrl, LocalDateTime fechaHora, EstadoContrato estado, String motivoRechazo) {
         this.id = id;
-        this.id_contrato = id_contrato;
+        this.idContrato = idContrato;
         this.descripcion = descripcion;
-        this.archivo_url = archivo_url;
-        this.fecha_hora = fecha_hora;
+        this.archivoUrl = archivoUrl;
+        this.fechaHora = fechaHora;
         this.estado = estado;
-        this.motivo_rechazo = motivo_rechazo;
+        this.motivoRechazo = motivoRechazo;
     }
 
     public int getId() {
         return id;
     }
 
-    public int getId_contrato() {
-        return id_contrato;
+    public int getIdContrato() {
+        return idContrato;
     }
 
     public String getDescripcion() {
         return descripcion;
     }
 
-    public String getArchivo_url() {
-        return archivo_url;
+    public String getArchivoUrl() {
+        return archivoUrl;
     }
 
-    public LocalDateTime getFecha_hora() {
-        return fecha_hora;
+    public LocalDateTime getFechaHora() {
+        return fechaHora;
     }
 
     public EstadoContrato getEstado() {
         return estado;
     }
 
-    public String getMotivo_rechazo() {
-        return motivo_rechazo;
+    public String getMotivoRechazo() {
+        return motivoRechazo;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setId_contrato(int id_contrato) {
-        this.id_contrato = id_contrato;
+    public void setIdContrato(int idContrato) {
+        this.idContrato = idContrato;
     }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
-    public void setArchivo_url(String archivo_url) {
-        this.archivo_url = archivo_url;
+    public void setArchivoUrl(String archivoUrl) {
+        this.archivoUrl = archivoUrl;
     }
 
-    public void setFecha_hora(LocalDateTime fecha_hora) {
-        this.fecha_hora = fecha_hora;
+    public void setFechaHora(LocalDateTime fechaHora) {
+        this.fechaHora = fechaHora;
     }
 
     public void setEstado(EstadoContrato estado) {
         this.estado = estado;
     }
 
-    public void setMotivo_rechazo(String motivo_rechazo) {
-        this.motivo_rechazo = motivo_rechazo;
+    public void setMotivoRechazo(String motivoRechazo) {
+        this.motivoRechazo = motivoRechazo;
     }
     
 }

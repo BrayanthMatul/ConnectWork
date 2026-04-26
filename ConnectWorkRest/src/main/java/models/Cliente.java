@@ -1,22 +1,22 @@
 package models;
 
 public class Cliente {
-    private int id_cliente;
+    private int idCliente;
     private String descripcion;
     private String sector;
-    private String sitio_web;
+    private String sitioWeb;
     private Perfil perfil;
 
-    public Cliente(int id_cliente, String descripcion, String sector, String sitio_web, Perfil perfil) {
-        this.id_cliente = id_cliente;
+    public Cliente(int idCliente, String descripcion, String sector, String sitioWeb, Perfil perfil) {
+        this.idCliente = idCliente;
         this.descripcion = descripcion;
         this.sector = sector;
-        this.sitio_web = sitio_web;
+        this.sitioWeb = sitioWeb;
         this.perfil = perfil;
     }
 
-    public int getId_cliente() {
-        return id_cliente;
+    public int getIdCliente() {
+        return idCliente;
     }
 
     public String getDescripcion() {
@@ -27,16 +27,16 @@ public class Cliente {
         return sector;
     }
 
-    public String getSitio_web() {
-        return sitio_web;
+    public String getSitioWeb() {
+        return sitioWeb;
     }
 
     public Perfil getPerfil() {
         return perfil;
     }
 
-    public void setId_cliente(int id_cliente) {
-        this.id_cliente = id_cliente;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public void setDescripcion(String descripcion) {
@@ -47,8 +47,8 @@ public class Cliente {
         this.sector = sector;
     }
 
-    public void setSitio_web(String sitio_web) {
-        this.sitio_web = sitio_web;
+    public void setSitioWeb(String sitioWeb) {
+        this.sitioWeb = sitioWeb;
     }
 
     public void setPerfil(Perfil perfil) {

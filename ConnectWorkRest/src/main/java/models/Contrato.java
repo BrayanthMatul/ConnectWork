@@ -8,16 +8,16 @@ import enums.EstadoContrato;
 public class Contrato { 
     
     private int id;
-    private int id_propuesta;
-    private Date fecha_inicio;
+    private int idPropuesta;
+    private Date fechaInicio;
     private BigDecimal monto;
     private EstadoContrato estado;
     private Double calificacion;
 
-    public Contrato(int id, int id_propuesta, Date fecha_inicio, BigDecimal monto, EstadoContrato estado, Double calificacion) {
+    public Contrato(int id, int idPropuesta, Date fechaInicio, BigDecimal monto, EstadoContrato estado, Double calificacion) {
         this.id = id;
-        this.id_propuesta = id_propuesta;
-        this.fecha_inicio = fecha_inicio;
+        this.idPropuesta = idPropuesta;
+        this.fechaInicio = fechaInicio;
         this.monto = monto;
         this.estado = estado;
         this.calificacion = calificacion;
@@ -27,12 +27,12 @@ public class Contrato {
         return id;
     }
 
-    public int getId_propuesta() {
-        return id_propuesta;
+    public int getIdPropuesta() {
+        return idPropuesta;
     }
 
-    public Date getFecha_inicio() {
-        return fecha_inicio;
+    public Date getFechaInicio() {
+        return fechaInicio;
     }
 
     public BigDecimal getMonto() {
@@ -51,12 +51,12 @@ public class Contrato {
         this.id = id;
     }
 
-    public void setId_propuesta(int id_propuesta) {
-        this.id_propuesta = id_propuesta;
+    public void setIdPropuesta(int idPropuesta) {
+        this.idPropuesta = idPropuesta;
     }
 
-    public void setFecha_inicio(Date fecha_inicio) {
-        this.fecha_inicio = fecha_inicio;
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
     }
 
     public void setMonto(BigDecimal monto) {

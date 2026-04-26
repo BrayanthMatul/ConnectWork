@@ -3,14 +3,14 @@ package models;
 public class Habilidad {
 
     private int id;
-    private int id_categoria;
+    private int idCategoria;
     private String nombre;
     private String descripcion;
     private boolean activo;
 
-    public Habilidad(int id, int id_categoria, String nombre, String descripcion, boolean activo) {
+    public Habilidad(int id, int idCategoria, String nombre, String descripcion, boolean activo) {
         this.id = id;
-        this.id_categoria = id_categoria;
+        this.idCategoria = idCategoria;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.activo = activo;
@@ -20,8 +20,8 @@ public class Habilidad {
         return id;
     }
 
-    public int getId_categoria() {
-        return id_categoria;
+    public int getIdCategoria() {
+        return idCategoria;
     }
 
     public String getNombre() {
@@ -40,8 +40,8 @@ public class Habilidad {
         this.id = id;
     }  
 
-    public void setId_categoria(int id_categoria) {
-        this.id_categoria = id_categoria;
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
     }
 
     public void setNombre(String nombre) {
