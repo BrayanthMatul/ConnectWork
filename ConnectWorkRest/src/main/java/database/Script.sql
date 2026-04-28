@@ -15,6 +15,9 @@ CREATE TABLE usuarios (
     tipo_usuario VARCHAR(50) NOT NULL
 );
 
+INSERT INTO usuarios (username, password, nombre_completo, email, tipo_usuario) VALUES
+('admin', '$2a$10$u1QwQwQwQwQwQwQwQwQwQeQwQwQwQwQwQwQwQwQwQwQwQwQwQwQw', 'Administrador', 'admin@example.com', 'administrador');
+
 CREATE TABLE perfiles (
     id_perfil INT PRIMARY KEY,
     cui VARCHAR(15) NOT NULL UNIQUE,
@@ -60,7 +63,7 @@ CREATE TABLE categorias (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL UNIQUE, 
     descripcion VARCHAR(255) NOT NULL,
-    activo BOOLEAN NOT NULL DEFAULT TRUE,
+    activo BOOLEAN NOT NULL DEFAULT TRUE
 );
 
 CREATE TABLE habilidades (
@@ -68,8 +71,7 @@ CREATE TABLE habilidades (
     id_categoria INT NOT NULL,
     nombre VARCHAR(255) NOT NULL UNIQUE,
     descripcion VARCHAR(255) NOT NULL,
-    activo BOOLEAN NOT NULL DEFAULT TRUE
-
+    activo BOOLEAN NOT NULL DEFAULT TRUE,
     FOREIGN KEY (id_categoria) REFERENCES categorias(id)
 );
 
@@ -155,5 +157,5 @@ CREATE TABLE historial_porcentajes_comisiones (
     id INT AUTO_INCREMENT PRIMARY KEY,
     fecha_hora_inicio DATETIME NOT NULL,
     fecha_hora_fin DATETIME,
-    porcentaje_comision DECIMAL(5, 2) NOT NULL,
+    porcentaje_comision DECIMAL(5, 2) NOT NULL
 );
