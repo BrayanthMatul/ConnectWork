@@ -16,7 +16,7 @@ CREATE TABLE usuarios (
 );
 
 INSERT INTO usuarios (username, password, nombre_completo, email, tipo_usuario) VALUES
-('admin', '$2a$10$u1QwQwQwQwQwQwQwQwQwQeQwQwQwQwQwQwQwQwQwQwQwQwQwQwQw', 'Administrador', 'admin@example.com', 'administrador');
+('admin', '$2a$10$nDc7gyJkCq.uiLqQsk66pO1y24Sum8Jn44d5MUDxiWwDG4OnxyBxi', 'Administrador', 'admin@example.com', 'administrador');
 
 CREATE TABLE perfiles (
     id_perfil INT PRIMARY KEY,
