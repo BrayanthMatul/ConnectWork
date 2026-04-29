@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { LoginServicio, LoginRequest } from '../../services/LoginServicio';
 
 @Component({
   selector: 'app-login',
@@ -7,6 +8,25 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   host: {
     class: 'flex-1 flex flex-col w-full',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Login { }
+export class Login {
+  username = signal<string>('');
+  password = signal<string>('');
+
+  constructor(private loginServicio: LoginServicio) {}
+
+  onSubmit() {
+    const data: LoginRequest = {
+      username: this.username(),
+      password: this.password()
+    };
+    this.loginServicio.login(data).subscribe({
+      next: () => {
+        alert('Sesión iniciada');
+      },
+      error: err => {
+        alert('Error: ' + err);
+      }
+    });
+  }
+}
