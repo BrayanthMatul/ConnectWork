@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { LoginServicio, LoginRequest } from '../../services/LoginServicio';
 
 @Component({
@@ -13,7 +13,7 @@ export class Login {
   username = signal<string>('');
   password = signal<string>('');
 
-  constructor(private loginServicio: LoginServicio) {}
+  loginServicio = inject(LoginServicio);
 
   onSubmit() {
     const data: LoginRequest = {
