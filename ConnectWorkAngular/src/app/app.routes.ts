@@ -1,16 +1,24 @@
 import { Routes } from '@angular/router';
-import { Login } from './pages/Login/Login';
+import { Inicio } from './pages/Inicio/Inicio';
 
 export const routes: Routes = [
+  {
+    path: '',
+    component: Inicio,
+  },
 
-    {
-         path: '',
-        component: Login
-    },
+  {
+    path: 'registro-cliente',
+    loadComponent: () => import('./pages/RegistroCliente/RegistroCliente'),
+  },
 
-    {
-        path: '**',
-        redirectTo: '',
-    }
-    
+  {
+    path: 'registro-freelancer',
+    loadComponent: () => import('./pages/RegistroFreelancer/RegistroFreelancer'),
+  },
+
+  {
+    path: '**',
+    redirectTo: '',
+  },
 ];
