@@ -3,8 +3,8 @@ package models;
 import java.math.BigDecimal;
 import java.sql.Date;
 
-public class Perfil{
-    
+public class Perfil {
+
     private int idPerfil;
     private String cui;
     private String telefono;
@@ -15,7 +15,8 @@ public class Perfil{
     private boolean perfilCompleto;
     private Usuario usuario;
 
-    public Perfil(int idPerfil, String cui, String telefono, Date fechaNacimiento, String direccion, BigDecimal saldo, boolean activo, boolean perfilCompleto, Usuario usuario) {
+    public Perfil(int idPerfil, String cui, String telefono, Date fechaNacimiento, String direccion, BigDecimal saldo,
+            boolean activo, boolean perfilCompleto, Usuario usuario) {
         this.idPerfil = idPerfil;
         this.cui = cui;
         this.telefono = telefono;
@@ -26,7 +27,6 @@ public class Perfil{
         this.perfilCompleto = perfilCompleto;
         this.usuario = usuario;
     }
-
 
     public int getIdPerfil() {
         return idPerfil;
