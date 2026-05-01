@@ -1,6 +1,7 @@
+CREATE USER 'user_proyecto_final'@'localhost' IDENTIFIED BY '12345';
+
 CREATE DATABASE connect_work_db;
 
-CREATE USER 'user_proyecto_final'@'localhost' IDENTIFIED BY '12345';
 GRANT ALL PRIVILEGES ON connect_work_db.* TO 'user_proyecto_final'@'localhost';
 FLUSH PRIVILEGES;
 
@@ -16,7 +17,7 @@ CREATE TABLE usuarios (
 );
 
 INSERT INTO usuarios (username, password, nombre_completo, email, tipo_usuario) VALUES
-('admin', '$2a$10$nDc7gyJkCq.uiLqQsk66pO1y24Sum8Jn44d5MUDxiWwDG4OnxyBxi', 'Administrador', 'admin@example.com', 'administrador');
+('admin', '$2a$10$nDc7gyJkCq.uiLqQsk66pO1y24Sum8Jn44d5MUDxiWwDG4OnxyBxi', 'Administrador', 'admin@example.com', 'ADMINISTRADOR');
 
 CREATE TABLE perfiles (
     id_perfil INT PRIMARY KEY,
