@@ -1,13 +1,13 @@
-import { Usuario } from "./usuario";
+import { Usuario } from './usuario';
 
 export interface Perfil {
-    id_perfil: number;
-    cui: string;
-    telefono: string;
-    fecha_nacimiento: Date;
-    direccion: string;
-    saldo: number;
-    activo: boolean;
-    perfil_completo: boolean;
-    usuario: Usuario;
+  idPerfil: number;
+  cui: string;
+  telefono: string;
+  fechaNacimiento: string;
+  direccion: string;
+  saldo: number;
+  activo: boolean;
+  perfilCompleto: boolean;
+  usuario: Usuario;
 }
