@@ -20,7 +20,7 @@ export class LoginServicio {
   private apiUrl = `${environment.urlBaseApi}api/login`;
   private http = inject(HttpClient);
 
-  login(data: LoginRequest): Observable<LoginResponse> {
+  public login(data: LoginRequest): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(this.apiUrl, data).pipe(
       tap((resp) => {
         // Guarda el token en localStorage
@@ -31,16 +31,16 @@ export class LoginServicio {
     );
   }
 
-  logout() {
+  public logout() {
     localStorage.removeItem('jwt');
     localStorage.removeItem('usuario');
   }
 
-  getToken(): string | null {
+  public getToken(): string | null {
     return localStorage.getItem('jwt');
   }
 
-  getUsuario(): Usuario | null {
+  public getUsuario(): Usuario | null {
     const usuario = localStorage.getItem('usuario');
     return usuario ? JSON.parse(usuario) : null;
   }
