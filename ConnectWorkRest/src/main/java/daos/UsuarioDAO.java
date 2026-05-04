@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import models.Usuario;
 
@@ -57,6 +59,28 @@ public class UsuarioDAO {
             throw new SQLException("Error al obtener el usuario: " + e.getMessage(), e);
         }
         return null;
+    }
+
+    public List<Usuario> obtenerTodos() throws SQLException {
+        String query = "SELECT * FROM usuarios";
+        List<Usuario> usuarios = new ArrayList<>();
+        try (Connection conn = ConexionDB.getConexion();
+                PreparedStatement ps = conn.prepareStatement(query);
+                ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String username = rs.getString("username");
+                String password = rs.getString("password");
+                String nombreCompleto = rs.getString("nombre_completo");
+                String email = rs.getString("email");
+                String tipo = rs.getString("tipo_usuario");
+                TipoUsuario tipoUsuario = asignarUsuario(tipo);
+                usuarios.add(new Usuario(id, username, password, nombreCompleto, email, tipoUsuario));
+            }
+        } catch (SQLException e) {
+            throw new SQLException("Error al obtener los usuarios: " + e.getMessage(), e);
+        }
+        return usuarios;
     }
 
     private TipoUsuario asignarUsuario(String tipo) {
