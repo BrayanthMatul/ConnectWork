@@ -1,21 +1,21 @@
-<dialog
-  #dialogElement
-  class="fixed inset-0 border-none bg-transparent w-full h-full backdrop:bg-black/50 backdrop:backdrop-blur-sm"
->
-  <div class="flex h-full w-full items-center justify-center bg-transparent">
-    <!-- 4. Tu tarjeta blanca con tus estilos -->
-    <div class="w-80 bg-white rounded-xl shadow-lg p-8 flex flex-col items-center font-rubik mx-4">
-      <p class="text-grisoscuro mb-6 text-center">
-        {{ mensaje() }}
-      </p>
+<div class="fixed inset-0 flex items-center justify-center bg-white/40">
+  <div
+    class="w-80 bg-white rounded-xl shadow-lg p-8 flex flex-col items-center font-rubik mx-4 drop-shadow-[0_0_2em_rgba(0,0,0,0.5)]"
+  >
+    <h2 class="text-xl font-bold text-moradooscuro mb-4 text-center">
+      {{ data.titulo }}
+    </h2>
+    <p class="text-grisoscuro mb-6 text-center">
+      {{ data.mensaje }}
+    </p>
 
-      <form method="dialog" class="w-full">
-        <button
-          class="w-full py-2 rounded-full border-2 border-moradooscuro text-moradooscuro font-bold transition hover:bg-moradooscuro hover:text-white cursor-pointer"
-        >
-          Aceptar
-        </button>
-      </form>
-    </div>
+    <form method="dialog" class="w-full">
+      <button
+        class="w-full py-2 rounded-full border-2 border-moradooscuro text-moradooscuro font-bold transition hover:bg-moradooscuro hover:text-white cursor-pointer"
+        (click)="cerrarModal()"
+      >
+        Aceptar
+      </button>
+    </form>
   </div>
-</dialog>
+</div>

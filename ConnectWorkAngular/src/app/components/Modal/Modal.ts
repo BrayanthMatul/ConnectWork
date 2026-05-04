@@ -1,4 +1,5 @@
-import { Component, ElementRef, ViewChild, input } from '@angular/core';
+import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
+import { Component, Inject, inject, input } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
@@ -6,11 +7,11 @@ import { Component, ElementRef, ViewChild, input } from '@angular/core';
   templateUrl: './Modal.html',
 })
 export class Modal {
-  mensaje = input.required<string>();
+  constructor(@Inject(DIALOG_DATA) public data: { titulo: string; mensaje: string }) {}
 
-  @ViewChild('dialogElement') private nativeDialog!: ElementRef<HTMLDialogElement>;
+  private dialogRef = inject(DialogRef, { optional: true });
 
-  public abrir() {
-    this.nativeDialog.nativeElement.showModal();
+  protected cerrarModal() {
+    this.dialogRef?.close();
   }
 }
