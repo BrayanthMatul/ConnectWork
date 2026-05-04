@@ -1,13 +1,13 @@
-import { Component, inject, input, signal, ViewChild } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { Modal } from '../../components/Modal/Modal';
 import { Perfil } from '../../models/perfil';
 import { Usuario } from '../../models/usuario';
 import { TipoUsuario } from '../../enums/tipo-usuario';
 import { PerfilServicio } from '../../services/PerfilServicio';
+import { Dialog } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-formulario-registro',
-  imports: [Modal],
   templateUrl: './FormularioRegistro.html',
 })
 export class FormularioRegistro {
@@ -15,7 +15,7 @@ export class FormularioRegistro {
   titulo = input.required<string>();
   tipoUsuarioEnviado = input.required<TipoUsuario>();
   perfilServicio = inject(PerfilServicio);
-  @ViewChild('modalError') modalHijo!: Modal;
+  private dialog = inject(Dialog);
 
   // Signals para los campos de usuario
   username = signal<string>('');
@@ -29,7 +29,7 @@ export class FormularioRegistro {
   fechaNacimientoIngresado = signal<string>('');
   direccion = signal<string>('');
 
-  onSubmit() {
+  protected onSubmit() {
     // Construir el objeto Usuario
     const usuario: Usuario = {
       id: 0, // Se ignora, lo asigna backend
@@ -61,12 +61,15 @@ export class FormularioRegistro {
         console.log('Error al registrar perfil:', error);
         const mensaje = error.error.valor;
         this.mensajeError.set(mensaje);
-        this.modalHijo.abrir();
+        this.openModal();
       },
     });
   }
 
-  limpiarError() {
-    this.mensajeError.set('');
+  protected openModal() {
+    this.dialog.open(Modal, {
+      data: { titulo: 'Error', mensaje: this.mensajeError() },
+      disableClose: true,
+    });
   }
 }
