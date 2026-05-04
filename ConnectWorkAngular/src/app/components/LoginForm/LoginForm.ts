@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { LoginRequest, LoginServicio } from '../../services/LoginServicio';
+import { AuthService } from '../../services/AuthServicio';
+import { LoginRequest } from '../../services/LoginServicio';
 
 @Component({
   selector: 'app-login-form',
@@ -8,10 +9,10 @@ import { LoginRequest, LoginServicio } from '../../services/LoginServicio';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginForm {
-  loginServicio = inject(LoginServicio);
   username = signal<string>('');
   password = signal<string>('');
   mensajeError = signal<string>('');
+  authService = inject(AuthService);
 
   onSubmit() {
     this.mensajeError.set('');
@@ -19,10 +20,7 @@ export class LoginForm {
       usernameOrEmail: this.username(),
       password: this.password(),
     };
-    this.loginServicio.login(data).subscribe({
-      next: () => {
-        alert('Sesión iniciada');
-      },
+    this.authService.login(data).subscribe({
       error: (err) => {
         this.mensajeError.set(err);
       },
