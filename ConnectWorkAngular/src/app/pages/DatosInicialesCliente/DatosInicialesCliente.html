@@ -1,0 +1,60 @@
+<div class="flex flex-1 flex-col bg-fondo font-rubik">
+  <div class="mt-5 px-8">
+    <app-logo> </app-logo>
+  </div>
+  <div class="flex-1 flex flex-col items-center justify-center">
+    <div class="w-95 bg-white rounded-xl shadow-lg p-8 flex flex-col font-rubik">
+      <div class="flex flex-col items-center">
+        <h1 class="text-2xl font-bold text-moradoclaro mb-2">Datos Iniciales para Cliente</h1>
+        <p class="text-grisoscuro mb-6">
+          Ingrese los datos solicitado, estos datos son necesarios para acceder a la plataforma
+        </p>
+      </div>
+      <form (submit)="$event.preventDefault(); onSubmit()" class="flex flex-col gap-3">
+        <div class="flex flex-1 flex-col gap-2">
+          <p class="text-grisoscuro">Descripcion breve de empresa o perfil</p>
+          <textarea
+            type="text"
+            [value]="descripcion()"
+            (input)="descripcion.set(txtDescripcion.value)"
+            #txtDescripcion
+            name="descripcion"
+            placeholder="Descripcion"
+            class="w-full px-4 py-2 mb-2 border border-grisclaro focus:outline-none focus:border-moradoclaro bg-fondo text-grisoscuro placeholder:text-grisoscuro/60"
+            required
+            rows="4"
+          ></textarea>
+          <p class="text-grisoscuro">Sector</p>
+          <input
+            type="text"
+            [value]="sector()"
+            (input)="sector.set(txtSector.value)"
+            #txtSector
+            name="sector"
+            placeholder="Sector"
+            class="w-full px-4 py-2 mb-2 border border-grisclaro rounded-full focus:outline-none focus:border-moradoclaro bg-fondo text-grisoscuro placeholder:text-grisoscuro/60"
+            required
+          />
+          <p class="text-grisoscuro">Sitio web (opcional)</p>
+          <input
+            type="url"
+            [value]="sitio_web()"
+            (input)="sitio_web.set(txtSitioWeb.value)"
+            #txtSitioWeb
+            name="sitio_web"
+            placeholder="https://www.ejemplo.com"
+            class="w-full px-4 py-2 mb-2 border border-grisclaro rounded-full focus:outline-none focus:border-moradoclaro bg-fondo text-grisoscuro placeholder:text-grisoscuro/60"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full py-2 rounded-full border-2 border-moradooscuro text-moradooscuro font-bold transition hover:bg-moradooscuro hover:text-white cursor-pointer mt-2"
+        >
+          Ingresar
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
