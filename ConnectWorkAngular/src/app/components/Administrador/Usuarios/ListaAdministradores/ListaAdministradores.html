@@ -1,1 +1,35 @@
-<p>ListaAdministradores works!</p>,
+@if (!listaVacia()) {
+  <div class="flex flex-col items-center">
+    <h2 class="text-2xl font-bold text-moradoclaro mb-2">Lista de Administradores</h2>
+  </div>
+  <section class="w-full bg-white rounded-xl shadow-lg p-8 font-rubik">
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-separate border-spacing-y-2">
+        <thead>
+          <tr class="text-moradooscuro">
+            <th class="px-4 py-3 font-normal">Nombre de Usuario</th>
+            <th class="px-4 py-3 font-normal">Nombre Completo</th>
+            <th class="px-4 py-3 font-normal">Correo Electrónico</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (administrador of administradores(); track administrador.id) {
+            <tr class="bg-fondo hover:bg-grisclaro/30 transition-colors duration-200">
+              <td class="px-4 py-4 rounded-l-full text-grisoscuro font-medium">
+                {{ administrador.username }}
+              </td>
+              <td class="px-4 py-4 text-grisoscuro">
+                {{ administrador.nombreCompleto }}
+              </td>
+              <td class="px-4 py-4 text-grisoscuro rounded-r-full">
+                {{ administrador.email }}
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+} @else {
+  <p class="text-grisoscuro text-center text-xl">No se encontraron administradores.</p>
+}
