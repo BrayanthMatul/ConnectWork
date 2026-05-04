@@ -3,10 +3,11 @@ import { TipoUsuario } from '../../enums/tipo-usuario';
 import { Perfil } from '../../models/perfil';
 import { FormularioRegistro } from '../../shared/FormularioRegistro/FormularioRegistro';
 import { Router } from '@angular/router';
+import { Logo } from '../../shared/Logo/Logo';
 
 @Component({
   selector: 'app-registro-freelancer',
-  imports: [FormularioRegistro],
+  imports: [FormularioRegistro, Logo],
   templateUrl: './RegistroFreelancer.html',
   host: {
     class: 'flex-1 flex flex-col w-full',
@@ -15,9 +16,4 @@ import { Router } from '@angular/router';
 export default class RegistroFreelancer {
   tipoFreelancer = TipoUsuario.FREELANCER;
   tituloFormulario = 'Registro de Freelancer';
-  routeServicio = inject(Router);
-
-  irInicio() {
-    this.routeServicio.navigate(['/inicio']);
-  }
 }
