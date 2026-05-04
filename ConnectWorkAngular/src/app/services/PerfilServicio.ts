@@ -12,7 +12,19 @@ export class PerfilServicio {
   private url = `${environment.urlBaseApi}api/perfil`;
   private http = inject(HttpClient);
 
-  registrarPerfil(perfil: Perfil): Observable<Respuesta> {
+  public registrarPerfil(perfil: Perfil): Observable<Respuesta> {
     return this.http.post<Respuesta>(this.url, perfil);
+  }
+
+  public obtenerPerfiles(): Observable<Perfil[]> {
+    return this.http.get<Perfil[]>(this.url);
+  }
+
+  public actualizarPerfil(perfil: Perfil): Observable<Respuesta> {
+    return this.http.put<Respuesta>(this.url, perfil);
+  }
+
+  public actualizarEstadoPerfil(idPerfil: number, activo: boolean): Observable<Respuesta> {
+    return this.http.patch<Respuesta>(this.url, { idPerfil, activo });
   }
 }
