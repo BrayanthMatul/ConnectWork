@@ -2,6 +2,8 @@ package services;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -15,6 +17,14 @@ import models.Usuario;
 
 public class PerfilServicio {
 
+    private final UsuarioDAO usuarioDAO;
+    private final PerfilDAO perfilDAO;
+
+    public PerfilServicio() {
+        this.usuarioDAO = new UsuarioDAO();
+        this.perfilDAO = new PerfilDAO();
+    }
+
     public void crearPerfil(Perfil perfil)
             throws NombreUsuarioException, CorreoUsuarioException, CuiUsuarioException, SQLException {
         if (!perfilYaExiste(perfil)) {
@@ -24,8 +34,6 @@ public class PerfilServicio {
 
     private boolean perfilYaExiste(Perfil perfil)
             throws SQLException, NombreUsuarioException, CorreoUsuarioException, CuiUsuarioException {
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-
         Usuario usuarioPorNombre = usuarioDAO.obtenerUsuario(perfil.getUsuario().getUsername());
         if (usuarioPorNombre != null) {
             throw new NombreUsuarioException("El nombre de usuario ya está registrado.");
@@ -36,7 +44,6 @@ public class PerfilServicio {
             throw new CorreoUsuarioException("El correo electrónico ya está registrado.");
         }
 
-        PerfilDAO perfilDAO = new PerfilDAO();
         Perfil perfilExistente = perfilDAO.obtenerPerfilPorCui(perfil.getCui());
         if (perfilExistente != null) {
             throw new CuiUsuarioException("El perfil con el CUI proporcionado ya existe.");
@@ -54,17 +61,48 @@ public class PerfilServicio {
 
         try {
 
-            UsuarioDAO usuarioDAO = new UsuarioDAO();
             int idUsuario = usuarioDAO.registrarNuevoUsuario(usuarioNuevo);
 
             nuevoPerfil.setIdPerfil(idUsuario);
             nuevoPerfil.setSaldo(new BigDecimal(0.00));
 
-            PerfilDAO perfilDAO = new PerfilDAO();
             perfilDAO.registrarNuevoPerfil(nuevoPerfil);
 
         } catch (SQLException e) {
             throw new SQLException("Error al crear el perfil: " + e.getMessage(), e);
         }
     }
+
+    public List<Perfil> obtenerTodosLosPerfiles() throws SQLException {
+        List<Perfil> perfiles = perfilDAO.obtenerTodos();
+        List<Usuario> usuarios = usuarioDAO.obtenerTodos();
+
+        // Mapear cada perfil con su usuario correspondiente
+        for (Perfil perfil : perfiles) {
+            for (Usuario usuario : usuarios) {
+                if (perfil.getIdPerfil() == usuario.getId()) {
+                    perfil.setUsuario(usuario);
+                    break;
+                }
+            }
+        }
+        return perfiles;
+    }
+
+    public void actualizarEstadoPerfil(int idPerfil, boolean activo) throws SQLException {
+        try {
+            perfilDAO.actualizarEstadoPerfil(idPerfil, activo);
+        } catch (SQLException e) {
+            throw new SQLException("Error al actualizar el perfil: " + e.getMessage(), e);
+        }
+    }
+
+    public void actualizarPerfil(Perfil perfil) throws SQLException {
+        try {
+            perfilDAO.actualizarPerfil(perfil);
+        } catch (SQLException e) {
+            throw new SQLException("Error al actualizar el perfil: " + e.getMessage(), e);
+        }
+    }
+
 }
