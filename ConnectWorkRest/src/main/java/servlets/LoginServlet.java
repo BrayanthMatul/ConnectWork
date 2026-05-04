@@ -37,7 +37,8 @@ public class LoginServlet extends HttpServlet {
                     loginRequest.getPassword());
             if (loginResponse != null) {
                 response.setStatus(HttpServletResponse.SC_OK);
-                JsonUtil.escribirJson(response, "token", loginResponse.getToken());
+                response.setContentType("application/json");
+                response.getWriter().write(gson.toJson(loginResponse));
             } else {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 JsonUtil.escribirJson(response, "error", "Credenciales incorrectas");
