@@ -1,29 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+@import 'primeicons/primeicons.css';
+@import '@angular/cdk/overlay-prebuilt.css';
 
 /* Fuente Rubik desde Google Fonts */
 @font-face {
-	font-family: 'Rubik';
-	font-style: normal;
-	font-weight: 400;
-	font-display: swap;
-	src: url('https://fonts.gstatic.com/s/rubik/v28/iJWKBXyIfDnIV7nBrXw.woff2') format('woff2');
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 350;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/rubik/v28/iJWKBXyIfDnIV7nBrXw.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/rubik/v28/iJWKBXyIfDnIV7nBrXw.woff2') format('woff2');
 }
 @font-face {
-	font-family: 'Rubik';
-	font-style: normal;
-	font-weight: 700;
-	font-display: swap;
-	src: url('https://fonts.gstatic.com/s/rubik/v28/iJWKBXyIfDnIV7nBrXw.woff2') format('woff2');
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/rubik/v28/iJWKBXyIfDnIV7nBrXw.woff2') format('woff2');
 }
 
 @theme {
-	--color-fondo: #FAFAFC;
-	--color-grisclaro: #D1D3E5;
-	--color-grisoscuro: #727694;
-	--color-moradoclaro: #5461C8;
-	--color-moradooscuro: #363A5B;
-	--font-rubik: 'Rubik', system-ui, sans-serif;
+  --color-fondo: #fafafc;
+  --color-grisclaro: #d1d3e5;
+  --color-grisoscuro: #727694;
+  --color-moradoclaro: #5461c8;
+  --color-moradooscuro: #363a5b;
+  --font-rubik: 'Rubik', system-ui, sans-serif;
 }
-
