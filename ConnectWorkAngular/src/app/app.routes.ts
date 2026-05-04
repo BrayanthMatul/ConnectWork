@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { Inicio } from './pages/Inicio/Inicio';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -9,6 +10,7 @@ export const routes: Routes = [
 
   {
     path: 'administrador-principal',
+    canActivate: [AuthGuard],
     loadComponent: () => import('./pages/AdministradorPrincipal/AdministradorPrincipal'),
     children: [
       {
@@ -105,6 +107,18 @@ export const routes: Routes = [
   },
 
   {
+    path: 'cliente-principal',
+    canActivate: [AuthGuard],
+    loadComponent: () => import('./pages/ClientePrincipal/ClientePrincipal'),
+  },
+
+  {
+    path: 'freelancer-principal',
+    canActivate: [AuthGuard],
+    loadComponent: () => import('./pages/FreelancerPrincipal/FreelancerPrincipal'),
+  },
+
+  {
     path: 'registro-cliente',
     loadComponent: () => import('./pages/RegistroCliente/RegistroCliente'),
   },
@@ -116,6 +130,6 @@ export const routes: Routes = [
 
   {
     path: '**',
-    redirectTo: 'administrador-principal',
+    redirectTo: 'Inicio',
   },
 ];
