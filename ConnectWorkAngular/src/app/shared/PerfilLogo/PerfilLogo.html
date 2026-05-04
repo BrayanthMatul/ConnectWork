@@ -1,0 +1,29 @@
+<div
+  #perfilButton
+  class="flex cursor-pointer items-center justify-center rounded-full bg-grisclaro w-10 h-10"
+  (click)="toggleMenu()"
+>
+  <img src="/assets/images/perfil.svg" alt="logoperfil" class="w-8" />
+</div>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="perfilButton"
+  [cdkConnectedOverlayOpen]="isOpen()"
+  [cdkConnectedOverlayPositions]="[
+    {
+      originX: 'end',
+      originY: 'bottom',
+      overlayX: 'end',
+      overlayY: 'top',
+      offsetY: 8,
+    },
+  ]"
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+  (backdropClick)="cerrarMenu()"
+>
+  <app-menu-perfil
+    [opcionesMenuPerfil]="opcionesMenuPerfil()"
+    [cerrarOverlay]="cerrarMenu.bind(this)"
+  ></app-menu-perfil>
+</ng-template>
