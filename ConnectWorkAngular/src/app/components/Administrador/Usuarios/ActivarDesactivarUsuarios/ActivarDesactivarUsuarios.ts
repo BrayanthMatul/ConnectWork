@@ -13,10 +13,11 @@ export default class ActivarDesactivarUsuarios {
   private modalService = inject(ModalService);
   protected perfiles = signal<Perfil[]>([]);
   protected perfilSeleccionado = signal<number>(0);
-  protected estadoSeleccionado = signal<boolean>(false);
+  protected estadoSeleccionado = signal<boolean>(true);
 
   ngOnInit() {
     this.cargarDePerfiles();
+    this.estadoSeleccionado.set(true);
   }
 
   private cargarDePerfiles() {
@@ -33,7 +34,7 @@ export default class ActivarDesactivarUsuarios {
 
   actualizarEstado() {
     if (!this.perfilSeleccionado() || this.perfilSeleccionado() === 0) {
-      this.modalService.abrirError('Por favor seleccione un perfil');
+      this.modalService.abrirAdvertencia('Por favor seleccione un perfil');
       return;
     }
 

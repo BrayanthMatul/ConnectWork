@@ -19,7 +19,7 @@
           @for (perfil of perfiles(); track perfil.idPerfil) {
             <option [value]="perfil.idPerfil">
               {{ perfil.usuario.username }} - {{ perfil.usuario.tipoUsuario }} -
-              {{ perfil.activo ? 'Activo' : 'Inactivo' }}
+              {{ perfil.activo ? 'Activo' : 'Desactivado' }}
             </option>
           }
         </select>
@@ -31,8 +31,8 @@
           #cmbEstado
           required
         >
-          <option value="true">Activo</option>
-          <option value="false">Inactivo</option>
+          <option value="true" selected>Activar</option>
+          <option value="false">Desactivar</option>
         </select>
         <button
           class="w-full py-2 rounded-full border-2 border-moradooscuro text-moradooscuro font-bold transition hover:bg-moradooscuro hover:text-white cursor-pointer mt-2"
