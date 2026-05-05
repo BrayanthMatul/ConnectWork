@@ -1,20 +1,20 @@
 package models;
 
 public class EstadoRequest {
-    private int idPerfil;
+    private int id;
     private boolean activo;
 
-    public EstadoRequest(int idPerfil, boolean activo) {
-        this.idPerfil = idPerfil;
+    public EstadoRequest(int id, boolean activo) {
+        this.id = id;
         this.activo = activo;
     }
 
-    public int getIdPerfil() {
-        return idPerfil;
+    public int getId() {
+        return id;
     }
 
-    public void setIdPerfil(int idPerfil) {
-        this.idPerfil = idPerfil;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public boolean isActivo() {
