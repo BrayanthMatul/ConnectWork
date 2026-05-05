@@ -24,7 +24,7 @@ export class PerfilServicio {
     return this.http.put<Respuesta>(this.url, perfil);
   }
 
-  public actualizarEstadoPerfil(idPerfil: number, activo: boolean): Observable<Respuesta> {
-    return this.http.patch<Respuesta>(this.url, { idPerfil, activo });
+  public actualizarEstadoPerfil(id: number, activo: boolean): Observable<Respuesta> {
+    return this.http.patch<Respuesta>(this.url, { id, activo });
   }
 }
