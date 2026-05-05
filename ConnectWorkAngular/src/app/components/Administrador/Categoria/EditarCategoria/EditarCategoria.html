@@ -1,1 +1,9 @@
-<p>EditarCategoria works!</p>,
+@if (!categoriaSeleccionada()) {
+  <app-seleccionar-categoria
+    (categoriaEditar)="manejarCategoriaSeleccionada($event)"
+  ></app-seleccionar-categoria>
+} @else {
+  <div>
+    <app-editor [categoria]="categoriaSeleccionada()!" (volver)="cancelarEdicion()"></app-editor>
+  </div>
+}

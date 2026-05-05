@@ -1,1 +1,47 @@
-<p>ActivarDesactivarHabilidad works!</p>,
+@if (this.habilidades().length > 0) {
+  <div class="flex flex-1 flex-col font-rubik">
+    <form (submit)="$event.preventDefault(); actualizarEstado()">
+      <h1 class="text-2xl font-bold text-center text-moradoclaro mb-2">
+        Activar/Desactivar Habilidad
+      </h1>
+
+      <div
+        class="w-95 bg-white rounded-xl shadow-lg p-8 flex flex-col font-rubik text-grisoscuro gap-5"
+      >
+        <p>Seleccionar habilidad para actualizar estado</p>
+        <select
+          class="border-2 rounded-full border-grisclaro rounded px-3 py-2 focus:outline-none focus:border-moradoclaro transition"
+          (change)="habilidadSeleccionada.set(toNumber(cmbPerfil.value))"
+          #cmbPerfil
+          required
+        >
+          <option value="0" disabled selected>--Seleccione una Habilidad--</option>
+          @for (habilidad of habilidades(); track habilidad.id) {
+            <option [value]="habilidad.id">
+              {{ habilidad.nombre }} - {{ habilidad.activo ? 'Activo' : 'Desactivado' }}
+            </option>
+          }
+        </select>
+
+        <p>Nuevo estado</p>
+        <select
+          class="border-2 rounded-full border-grisclaro rounded px-3 py-2 focus:outline-none focus:border-moradoclaro transition"
+          (change)="estadoSeleccionado.set(cmbEstado.value === 'true')"
+          #cmbEstado
+          required
+        >
+          <option value="true" selected>Activar</option>
+          <option value="false">Desactivar</option>
+        </select>
+        <button
+          class="w-full py-2 rounded-full border-2 border-moradooscuro text-moradooscuro font-bold transition hover:bg-moradooscuro hover:text-white cursor-pointer mt-2"
+          type="submit"
+        >
+          Actualizar Estado
+        </button>
+      </div>
+    </form>
+  </div>
+} @else {
+  <p class="text-grisoscuro text-center text-xl">No hay habilidades registradas para mostrar.</p>
+}

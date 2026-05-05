@@ -1,1 +1,9 @@
-<p>EditarHabilidad works!</p>,
+@if (!habilidadSeleccionada()) {
+  <app-selecciona-habilidad
+    (habilidadEditar)="manejarHabilidadSeleccionada($event)"
+  ></app-selecciona-habilidad>
+} @else {
+  <div>
+    <app-editor [habilidad]="habilidadSeleccionada()!" (volver)="cancelarEdicion()"></app-editor>
+  </div>
+}
