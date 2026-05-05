@@ -160,3 +160,6 @@ CREATE TABLE historial_porcentajes_comisiones (
     fecha_hora_fin DATETIME,
     porcentaje_comision DECIMAL(5, 2) NOT NULL
 );
+
+INSERT INTO historial_porcentajes_comisiones (fecha_hora_inicio, porcentaje_comision) VALUES
+('2026-01-01 00:00:00', 10.00);
