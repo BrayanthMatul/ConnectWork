@@ -12,6 +12,7 @@
             <th class="px-4 py-3 font-normal">CUI</th>
             <th class="px-4 py-3 font-normal">Teléfono</th>
             <th class="px-4 py-3 font-normal">Correo Electrónico</th>
+            <th class="px-4 py-3 font-normal">Estado</th>
           </tr>
         </thead>
         <tbody>
@@ -29,8 +30,11 @@
               <td class="px-4 py-4 text-grisoscuro">
                 {{ perfil.telefono }}
               </td>
-              <td class="px-4 py-4 text-grisoscuro rounded-r-full">
+              <td class="px-4 py-4 text-grisoscuro">
                 {{ perfil.usuario.email }}
+              </td>
+              <td class="px-4 py-4 text-grisoscuro rounded-r-full">
+                {{ perfil.activo ? 'Activo' : 'Desactivado' }}
               </td>
             </tr>
           }
