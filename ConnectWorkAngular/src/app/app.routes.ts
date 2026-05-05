@@ -73,7 +73,7 @@ export const routes: Routes = [
           import('./components/Administrador/Categoria/EditarHabilidad/EditarHabilidad'),
       },
       {
-        path: 'desactivar-habilidad',
+        path: 'activar-desactivar-habilidad',
         loadComponent: () =>
           import('./components/Administrador/Categoria/ActivarDesactivarHabilidad/ActivarDesactivarHabilidad'),
       },
@@ -100,6 +100,11 @@ export const routes: Routes = [
       {
         path: 'carga-archivo',
         loadComponent: () => import('./components/Administrador/CargaAchivo/CargaAchivo'),
+      },
+      {
+        path: 'lista-habilidades',
+        loadComponent: () =>
+          import('./components/Administrador/Categoria/ListaDeHabilidades/ListaDeHabilidades'),
       },
 
       { path: '**', redirectTo: 'registro-administrador' },
