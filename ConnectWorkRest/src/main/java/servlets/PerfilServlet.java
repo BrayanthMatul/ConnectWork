@@ -60,7 +60,7 @@ public class PerfilServlet extends HttpServlet {
             res.setContentType("application/json");
             res.setCharacterEncoding("UTF-8");
             res.getWriter().write(gson.toJson(perfiles));
-        } catch (Exception e) {
+        } catch (SQLException e) {
             res.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             JsonUtil.escribirJson(res, "error", "Error al obtener perfiles: " + e.getMessage());
         }
@@ -92,7 +92,7 @@ public class PerfilServlet extends HttpServlet {
 
             // Obtener el estado del body
             EstadoRequest estadoData = gson.fromJson(req.getReader(), EstadoRequest.class);
-            perfilServicio.actualizarEstadoPerfil(estadoData.getIdPerfil(), estadoData.isActivo());
+            perfilServicio.actualizarEstadoPerfil(estadoData.getId(), estadoData.isActivo());
             res.setStatus(HttpServletResponse.SC_OK);
             JsonUtil.escribirJson(res, "mensaje", "Estado del perfil actualizado exitosamente");
         } catch (NumberFormatException e) {
