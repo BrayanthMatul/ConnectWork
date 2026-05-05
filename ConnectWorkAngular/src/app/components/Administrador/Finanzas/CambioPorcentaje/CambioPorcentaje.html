@@ -1,1 +1,29 @@
-<p>CambioPorcentaje works!</p>,
+<p class="text-grisoscuro text-center mb-4">Porcentaje Actual: {{ porcentajeActual() }}%</p>
+<h1 class="text-2xl font-bold text-center text-moradoclaro mb-2">Cambio de Porcentaje</h1>
+
+<div class="w-95 bg-white rounded-xl shadow-lg p-8 flex flex-col font-rubik">
+  <form (submit)="$event.preventDefault(); cambiarPorcentaje()" class="flex flex-col gap-3">
+    <div class="flex flex-1 flex-row gap-10">
+      <div class="flex flex-1 flex-col gap-2">
+        <p class="text-grisoscuro">Nuevo Porcentaje</p>
+        <input
+          type="number"
+          [value]="nuevoPorcentaje()"
+          (input)="nuevoPorcentaje.set(+txtNuevoPorcentaje.value || 0)"
+          #txtNuevoPorcentaje
+          name="nuevoPorcentaje"
+          placeholder="Nuevo Porcentaje"
+          class="w-full px-4 py-2 mb-2 border border-grisclaro rounded-full focus:outline-none focus:border-moradoclaro bg-fondo text-grisoscuro placeholder:text-grisoscuro/60"
+          required
+        />
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="w-full py-2 rounded-full border-2 border-moradooscuro text-moradooscuro font-bold transition hover:bg-moradooscuro hover:text-white cursor-pointer mt-2"
+    >
+      Guardar Cambios
+    </button>
+  </form>
+</div>
