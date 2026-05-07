@@ -67,6 +67,17 @@ CREATE TABLE categorias (
     activo BOOLEAN NOT NULL DEFAULT TRUE
 );
 
+CREATE TABLE categoria_solicitudes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL UNIQUE, 
+    descripcion VARCHAR(255) NOT NULL,
+    id_cliente INT NOT NULL,
+    aceptada BOOLEAN NOT NULL DEFAULT FALSE,
+    revisada BOOLEAN NOT NULL DEFAULT FALSE,
+
+    FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
+);
+
 CREATE TABLE habilidades (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_categoria INT NOT NULL,
