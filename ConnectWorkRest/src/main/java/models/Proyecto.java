@@ -2,6 +2,7 @@ package models;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.List;
 
 import enums.EstadoProyecto;
 
@@ -14,8 +15,11 @@ public class Proyecto {
     private BigDecimal presupuestoMaximo;
     private Date fechaLimite;
     private EstadoProyecto estado;
+    private List<ProyectoHabilidad> habilidades;
 
-    public Proyecto(int id, int idCliente, int idCategoria, String titulo, String descripcion, BigDecimal presupuestoMaximo, Date fechaLimite, EstadoProyecto estado) {
+    public Proyecto(int id, int idCliente, int idCategoria, String titulo, String descripcion,
+            BigDecimal presupuestoMaximo, Date fechaLimite, EstadoProyecto estado,
+            List<ProyectoHabilidad> habilidades) {
         this.id = id;
         this.idCliente = idCliente;
         this.idCategoria = idCategoria;
@@ -24,6 +28,7 @@ public class Proyecto {
         this.presupuestoMaximo = presupuestoMaximo;
         this.fechaLimite = fechaLimite;
         this.estado = estado;
+        this.habilidades = habilidades;
     }
 
     public int getId() {
@@ -56,5 +61,9 @@ public class Proyecto {
 
     public EstadoProyecto getEstado() {
         return estado;
-    }   
+    }
+
+    public List<ProyectoHabilidad> getHabilidades() {
+        return habilidades;
+    }
 }
