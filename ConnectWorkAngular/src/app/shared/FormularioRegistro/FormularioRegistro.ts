@@ -4,6 +4,8 @@ import { Usuario } from '../../models/usuario';
 import { TipoUsuario } from '../../enums/tipo-usuario';
 import { PerfilServicio } from '../../services/PerfilServicio';
 import { ModalService } from '../../services/ModalService';
+import { AuthService } from '../../services/AuthServicio';
+import { LoginRequest } from '../../services/LoginServicio';
 
 @Component({
   selector: 'app-formulario-registro',
@@ -13,6 +15,7 @@ export class FormularioRegistro {
   titulo = input.required<string>();
   tipoUsuarioEnviado = input.required<TipoUsuario>();
   perfilServicio = inject(PerfilServicio);
+  private authService = inject(AuthService);
   private modalService = inject(ModalService);
 
   // Signals para los campos de usuario
@@ -51,8 +54,19 @@ export class FormularioRegistro {
     };
     // Registrar el perfil
     this.perfilServicio.registrarPerfil(perfil).subscribe({
-      next: (respuesta) => {
-        this.modalService.abrirExito(respuesta.valor);
+      next: () => {
+        // Realizar login automático después del registro
+        const loginRequest: LoginRequest = {
+          usernameOrEmail: this.username(),
+          password: this.password(),
+        };
+        this.authService.login(loginRequest).subscribe({
+          error: (error) => {
+            console.log('Error al hacer login automático:', error);
+            const mensaje = error.error?.valor || 'Error al iniciar sesión';
+            this.modalService.abrirError(mensaje);
+          },
+        });
       },
       error: (error) => {
         // Captura el mensaje exacto del backend
