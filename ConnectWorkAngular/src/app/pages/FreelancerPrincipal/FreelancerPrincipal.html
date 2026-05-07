@@ -1,1 +1,6 @@
-<p>FreelancerPrincipal works!</p>,
+<div class="flex-1 flex flex-col bg-fondo">
+  <app-header [opcionesMenu]="opcionesMenu" [opcionesMenuPerfil]="opcionesMenuPerfil"></app-header>
+  <div class="flex flex-1 justify-center items-center">
+    <router-outlet></router-outlet>
+  </div>
+</div>
