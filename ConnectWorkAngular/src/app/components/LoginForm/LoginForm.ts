@@ -21,8 +21,8 @@ export class LoginForm {
       password: this.password(),
     };
     this.authService.login(data).subscribe({
-      error: (err) => {
-        this.mensajeError.set(err);
+      error: (error) => {
+        this.mensajeError.set(error.error.valor);
       },
     });
   }
