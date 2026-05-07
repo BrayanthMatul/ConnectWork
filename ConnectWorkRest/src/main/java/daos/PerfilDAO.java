@@ -107,4 +107,15 @@ public class PerfilDAO {
         }
     }
 
+    public void marcarPerfilComoCompleto(int idPerfil) throws SQLException {
+        String query = "UPDATE perfiles SET perfil_completado = TRUE WHERE id_perfil = ?";
+        try (Connection conn = ConexionDB.getConexion();
+                PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setInt(1, idPerfil);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new SQLException("Error al marcar el perfil como completo: " + e.getMessage(), e);
+        }
+    }
+
 }
