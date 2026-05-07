@@ -118,4 +118,16 @@ public class PerfilDAO {
         }
     }
 
+    public void agregarSaldo(int idPerfil, BigDecimal monto) throws SQLException {
+        String query = "UPDATE perfiles SET saldo = saldo + ? WHERE id_perfil = ?";
+        try (Connection conn = ConexionDB.getConexion();
+                PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setBigDecimal(1, monto);
+            ps.setInt(2, idPerfil);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new SQLException("Error al agregar saldo al perfil: " + e.getMessage(), e);
+        }
+    }
+
 }
