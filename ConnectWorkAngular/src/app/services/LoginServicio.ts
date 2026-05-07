@@ -46,6 +46,6 @@ export class LoginServicio {
   }
 
   private mostrarError(error: HttpErrorResponse) {
-    return throwError(() => error.error?.error || 'Error desconocido al iniciar sesión');
+    return throwError(() => error);
   }
 }
