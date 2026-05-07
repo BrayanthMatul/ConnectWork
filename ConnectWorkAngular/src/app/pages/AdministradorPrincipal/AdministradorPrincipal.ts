@@ -51,6 +51,5 @@ export default class AdministradorPrincipal {
   protected opcionesMenuPerfil = <MenuOpciones[]>[
     { etiqueta: 'Mi Perfil', ruta: '/' },
     { etiqueta: 'Editar Perfil', ruta: 'editar-perfil' },
-    { etiqueta: 'Cerrar Sesión', ruta: 'cerrar-sesion' },
   ];
 }
