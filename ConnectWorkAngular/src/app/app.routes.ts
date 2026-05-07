@@ -159,6 +159,11 @@ export const routes: Routes = [
         path: 'reportes',
         loadComponent: () => import('./components/Cliente/ReportesCliente/ReportesCliente'),
       },
+
+      {
+        path: 'solicitar-categoria',
+        loadComponent: () => import('./components/Cliente/SolicitarCategoria/SolicitarCategoria'),
+      },
     ],
   },
 
