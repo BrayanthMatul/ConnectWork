@@ -1,0 +1,119 @@
+<h1 class="text-2xl font-bold text-center text-moradoclaro mb-2">Publicar Proyecto</h1>
+
+<div class="w-195 bg-white rounded-xl shadow-lg p-8 flex flex-col font-rubik">
+  <form (submit)="$event.preventDefault(); publicarProyecto()" class="flex flex-col gap-3">
+    <div class="flex flex-1 flex-row gap-10">
+      <div class="flex flex-1 flex-col gap-2">
+        <p class="text-grisoscuro">Titulo</p>
+        <input
+          type="text"
+          [value]="titulo()"
+          (input)="titulo.set(txtTitulo.value)"
+          #txtTitulo
+          name="titulo"
+          placeholder="Titulo"
+          class="w-full px-4 py-2 mb-2 border border-grisclaro rounded-full focus:outline-none focus:border-moradoclaro bg-fondo text-grisoscuro placeholder:text-grisoscuro/60"
+          required
+        />
+
+        <p class="text-grisoscuro">Descripción</p>
+        <input
+          type="text"
+          [value]="descripcion()"
+          (input)="descripcion.set(txtDescripcion.value)"
+          #txtDescripcion
+          name="descripcion"
+          placeholder="Descripción"
+          class="w-full px-4 py-2 mb-2 border border-grisclaro rounded-full focus:outline-none focus:border-moradoclaro bg-fondo text-grisoscuro placeholder:text-grisoscuro/60"
+          required
+        />
+        <p class="text-grisoscuro">Presupuesto Maximo</p>
+        <input
+          type="number"
+          [value]="presupuestoMaximo()"
+          (input)="presupuestoMaximo.set(+txtPresupuesto.value)"
+          #txtPresupuesto
+          name="presupuesto"
+          placeholder="Presupuesto Maximo"
+          class="w-full px-4 py-2 mb-2 border border-grisclaro rounded-full focus:outline-none focus:border-moradoclaro bg-fondo text-grisoscuro placeholder:text-grisoscuro/60"
+          required
+        />
+
+        <p class="text-grisoscuro">Fecha limite esperada</p>
+        <input
+          type="date"
+          [value]="fechaLimite()"
+          (input)="fechaLimite.set(txtFechaLimite.value)"
+          #txtFechaLimite
+          name="fechaLimite"
+          placeholder="Fecha limite esperada"
+          class="w-full px-4 py-2 mb-2 border border-grisclaro rounded-full focus:outline-none focus:border-moradoclaro bg-fondo text-grisoscuro placeholder:text-grisoscuro/60"
+          required
+        />
+      </div>
+      <div class="flex flex-1 flex-col gap-2">
+        <p>Seleccionar categoria</p>
+        <select
+          class="border-2 rounded-full border-grisclaro rounded px-3 py-2 focus:outline-none focus:border-moradoclaro transition"
+          (change)="categoriaSeleccionada.set(toNumber(cmbPerfil.value)); actualizarCategoria()"
+          #cmbPerfil
+          required
+        >
+          <option value="0" disabled selected>--Seleccione una Categoria--</option>
+          @for (categoria of categoriasConHabilidades(); track categoria.id) {
+            <option [value]="categoria.id">
+              {{ categoria.nombre }}
+            </option>
+          }
+        </select>
+        <select
+          class="border-2 rounded-full border-grisclaro rounded px-3 py-2 focus:outline-none focus:border-moradoclaro transition"
+          [value]="habilidadSeleccionada()"
+          (change)="habilidadSeleccionada.set(toNumber(cmbHabilidad.value))"
+          #cmbHabilidad
+          required
+        >
+          <option value="0" disabled selected>--Seleccione una Habilidad--</option>
+          @for (habilidad of habilidadesDeCategoria(); track habilidad.id) {
+            <option [value]="habilidad.id">
+              {{ habilidad.nombre }}
+            </option>
+          }
+        </select>
+        <button
+          type="button"
+          class="w-full py-2 rounded-full border-2 border-moradooscuro text-moradooscuro font-bold transition hover:bg-moradooscuro hover:text-white cursor-pointer mt-2"
+          (click)="agregarHabilidad()"
+        >
+          Agregar Habilidad
+        </button>
+        @if (habilidadesSeleccionadas().length > 0) {
+          <p class="text-grisoscuro mb-3 font-semibold text-center">Habilidades Seleccionadas</p>
+          <div class="flex flex-wrap gap-2">
+            @for (habilidad of habilidadesSeleccionadas(); track habilidad.id) {
+              <div
+                class="flex items-center gap-2 bg-moradoclaro/10 border border-moradoclaro rounded-full px-3 py-1"
+              >
+                <span class="text-grisoscuro text-sm">{{ habilidad.nombre }}</span>
+                <button
+                  type="button"
+                  (click)="removerHabilidad(habilidad.id)"
+                  class="text-moradooscuro hover:text-moradooscuro font-bold leading-none hover:scale-110 transition-transform"
+                >
+                  <i class="pi pi-times"></i>
+                </button>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="w-full py-2 rounded-full border-2 border-moradooscuro text-moradooscuro font-bold transition hover:bg-moradooscuro hover:text-white cursor-pointer mt-2"
+    >
+      Publicar Proyecto
+    </button>
+  </form>
+</div>
