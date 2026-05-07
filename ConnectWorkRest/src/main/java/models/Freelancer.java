@@ -2,16 +2,19 @@ package models;
 
 import java.math.BigDecimal;
 
-public class Freelancer{
+public class Freelancer {
     private int idFreelancer;
     private String biografia;
+    private String nivelExperiencia;
     private float calificacion;
     private BigDecimal tarifaHora;
     private Perfil perfil;
-    
-    public Freelancer(int idFreelancer, String biografia, float calificacion, BigDecimal tarifaHora, Perfil perfil) {
+
+    public Freelancer(int idFreelancer, String biografia, String nivelExperiencia, float calificacion,
+            BigDecimal tarifaHora, Perfil perfil) {
         this.idFreelancer = idFreelancer;
         this.biografia = biografia;
+        this.nivelExperiencia = nivelExperiencia;
         this.calificacion = calificacion;
         this.tarifaHora = tarifaHora;
         this.perfil = perfil;
@@ -36,6 +39,11 @@ public class Freelancer{
     public Perfil getPerfil() {
         return perfil;
     }
+
+    public String getNivelExperiencia() {
+        return nivelExperiencia;
+    }
+
     public void setIdFreelancer(int idFreelancer) {
         this.idFreelancer = idFreelancer;
     }
@@ -54,6 +62,10 @@ public class Freelancer{
 
     public void setPerfil(Perfil perfil) {
         this.perfil = perfil;
+    }
+
+    public void setNivelExperiencia(String nivelExperiencia) {
+        this.nivelExperiencia = nivelExperiencia;
     }
 
 }
