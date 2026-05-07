@@ -1,8 +1,5 @@
 import { Component, inject, computed } from '@angular/core';
-import {
-  CategoriaConHabilidades,
-  CategoriaListaServicio,
-} from '../../../../services/CategoriaListaServicio';
+import { CategoriaListaServicio } from '../../../../services/CategoriaListaServicio';
 
 @Component({
   selector: 'app-lista-de-habilidades',
