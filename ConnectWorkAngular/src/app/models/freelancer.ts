@@ -1,9 +1,10 @@
-import { Perfil } from "./perfil";
+import { Perfil } from './perfil';
 
 export interface Freelancer {
-    idFreelancer: number;
-    biografia: string;
-    calificacion: number;
-    tarifaHora: number;
-    perfil: Perfil;
+  idFreelancer: number;
+  biografia: string;
+  nivelExperiencia: string;
+  calificacion: number;
+  tarifaHora: number;
+  perfil: Perfil;
 }
