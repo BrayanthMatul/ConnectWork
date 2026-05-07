@@ -51,8 +51,7 @@ public class PerfilServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
         try {
-            // Verificar que sea administrador
-            if (!PermissionUtil.verificarAdministrador(req, res)) {
+            if (!PermissionUtil.verificarAutenticacion(req, res)) {
                 return;
             }
 
