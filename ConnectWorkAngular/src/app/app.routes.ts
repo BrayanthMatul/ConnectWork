@@ -115,6 +115,51 @@ export const routes: Routes = [
     path: 'cliente-principal',
     canActivate: [AuthGuard],
     loadComponent: () => import('./pages/ClientePrincipal/ClientePrincipal'),
+
+    children: [
+      {
+        path: 'publicar-proyecto',
+        loadComponent: () =>
+          import('./components/Cliente/Proyectos/PublicarProyecto/PublicarProyecto'),
+      },
+
+      {
+        path: 'cancelar-proyecto',
+        loadComponent: () =>
+          import('./components/Cliente/Proyectos/CancelarProyecto/CancelarProyecto'),
+      },
+
+      {
+        path: 'proyectos-publicados',
+        loadComponent: () =>
+          import('./components/Cliente/Proyectos/ProyectosPublicados/ProyectosPublicados'),
+      },
+
+      {
+        path: 'propuestas-recibidas',
+        loadComponent: () => import('./components/Cliente/PropuestasRecibidas/PropuestasRecibidas'),
+      },
+
+      {
+        path: 'entregas-recibidas',
+        loadComponent: () => import('./components/Cliente/EntregasRecibidas/EntregasRecibidas'),
+      },
+
+      {
+        path: 'saldo',
+        loadComponent: () => import('./components/Cliente/Finanzas/Saldo/Saldo'),
+      },
+
+      {
+        path: 'recargar-saldo',
+        loadComponent: () => import('./components/Cliente/Finanzas/RecargarSaldo/RecargarSaldo'),
+      },
+
+      {
+        path: 'reportes',
+        loadComponent: () => import('./components/Cliente/ReportesCliente/ReportesCliente'),
+      },
+    ],
   },
 
   {
@@ -131,6 +176,18 @@ export const routes: Routes = [
   {
     path: 'registro-freelancer',
     loadComponent: () => import('./pages/RegistroFreelancer/RegistroFreelancer'),
+  },
+
+  {
+    path: 'datos-iniciales-cliente',
+    canActivate: [AuthGuard],
+    loadComponent: () => import('./pages/DatosInicialesCliente/DatosInicialesCliente'),
+  },
+
+  {
+    path: 'datos-iniciales-freelancer',
+    canActivate: [AuthGuard],
+    loadComponent: () => import('./pages/DatosInicialesFreelancer/DatosInicialesFreelancer'),
   },
 
   {
