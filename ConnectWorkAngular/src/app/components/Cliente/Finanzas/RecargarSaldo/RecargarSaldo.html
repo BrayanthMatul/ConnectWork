@@ -1,1 +1,27 @@
-<p>RecargarSaldo works!</p>,
+<div class="flex flex-1 flex-col font-rubik">
+  <form (submit)="$event.preventDefault(); recargarSaldo()">
+    <h1 class="text-2xl font-bold text-center text-moradoclaro mb-2">Recargar Saldo</h1>
+
+    <div
+      class="w-95 bg-white rounded-xl shadow-lg p-8 flex flex-col font-rubik text-grisoscuro gap-5"
+    >
+      <p class="text-grisoscuro">Ingrese el monto a recargar:</p>
+      <input
+        type="number"
+        [value]="monto()"
+        (input)="monto.set(+txtMonto.value)"
+        #txtMonto
+        name="monto"
+        placeholder="Monto a recargar"
+        class="w-full px-4 py-2 mb-2 border border-grisclaro rounded-full focus:outline-none focus:border-moradoclaro bg-fondo text-grisoscuro placeholder:text-grisoscuro/60"
+        required
+      />
+      <button
+        class="w-full py-2 rounded-full border-2 border-moradooscuro text-moradooscuro font-bold transition hover:bg-moradooscuro hover:text-white cursor-pointer mt-2"
+        type="submit"
+      >
+        Recargar Saldo
+      </button>
+    </div>
+  </form>
+</div>
