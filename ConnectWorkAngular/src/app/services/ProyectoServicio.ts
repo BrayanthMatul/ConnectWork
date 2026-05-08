@@ -43,4 +43,12 @@ export class ProyectoServicio {
       ),
     );
   }
+
+  public obtenerProyectosAbiertos(): Observable<Proyecto[]> {
+    return this.obtenerProyectos().pipe(
+      map((proyectos) =>
+        proyectos.filter((proyecto) => proyecto.estado === EstadoProyecto.ABIERTO),
+      ),
+    );
+  }
 }
