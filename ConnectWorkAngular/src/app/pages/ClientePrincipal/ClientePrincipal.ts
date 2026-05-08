@@ -22,8 +22,13 @@ export default class ClientePrincipal {
       ],
     },
 
-    { etiqueta: 'Propuestas Recibidas', ruta: 'propuestas-recibidas' },
-    { etiqueta: 'Entregas Recibidas', ruta: 'entregas-recibidas' },
+    {
+      etiqueta: 'Buzon de entrada',
+      subOpciones: [
+        { etiqueta: 'Propuestas Recibidas', ruta: 'propuestas-recibidas' },
+        { etiqueta: 'Entregas Recibidas', ruta: 'entregas-recibidas' },
+      ],
+    },
 
     {
       etiqueta: 'Finanzas',
@@ -32,6 +37,7 @@ export default class ClientePrincipal {
         { etiqueta: 'Recargar Saldo', ruta: 'recargar-saldo' },
       ],
     },
+    { etiqueta: 'Solicitar categoria', ruta: 'solicitar-categoria' },
     { etiqueta: 'Reportes', ruta: 'reportes' },
   ];
 
