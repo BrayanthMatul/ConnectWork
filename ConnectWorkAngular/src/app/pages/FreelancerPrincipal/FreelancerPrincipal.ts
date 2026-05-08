@@ -23,7 +23,7 @@ export default class FreelancerPrincipal {
       ruta: 'contratos-activos',
     },
 
-    { etiqueta: 'Solicitar Habilidad', ruta: 'carga-archivo' },
+    { etiqueta: 'Solicitar Habilidad', ruta: 'solicitar-habilidad' },
     { etiqueta: 'Saldo', ruta: 'saldo' },
     { etiqueta: 'Reportes', ruta: 'reportes' },
   ];
