@@ -5,6 +5,8 @@ import { Proyecto } from '../models/proyecto';
 import { Observable } from 'rxjs/internal/Observable';
 import { Respuesta } from '../models/respuesta';
 import { EstadoProyecto } from '../enums/estado-proyecto';
+import { map } from 'rxjs/internal/operators/map';
+import { EstadoProyectoRequest } from '../models/estado-proyecto-request';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +27,20 @@ export class ProyectoServicio {
     return this.http.put<Respuesta>(this.url, proyecto);
   }
 
-  public actualizarEstadoProyecto(id: number, estado: EstadoProyecto): Observable<Respuesta> {
-    return this.http.patch<Respuesta>(this.url, { id, estado });
+  public actualizarEstadoProyecto(request: EstadoProyectoRequest): Observable<Respuesta> {
+    return this.http.patch<Respuesta>(this.url, request);
+  }
+
+  public obtenerProyectosActivosPorCliente(idCliente: number): Observable<Proyecto[]> {
+    return this.obtenerProyectos().pipe(
+      map((proyectos) =>
+        proyectos.filter(
+          (proyecto) =>
+            proyecto.idCliente === idCliente &&
+            proyecto.estado !== EstadoProyecto.FINALIZADO &&
+            proyecto.estado !== EstadoProyecto.CANCELADO,
+        ),
+      ),
+    );
   }
 }
