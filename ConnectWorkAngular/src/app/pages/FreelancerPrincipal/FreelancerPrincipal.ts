@@ -14,39 +14,18 @@ import { RouterOutlet } from '@angular/router';
 export default class FreelancerPrincipal {
   protected opcionesMenu = <MenuOpciones[]>[
     {
-      etiqueta: 'Usuarios',
-      subOpciones: [
-        { etiqueta: 'Registrar administrador', ruta: 'registro-administrador' },
-        { etiqueta: 'Activar/Desactivar Usuario', ruta: 'activar-desactivar-usuario' },
-        { etiqueta: 'Lista de Administradores', ruta: 'lista-administradores' },
-        { etiqueta: 'Lista de Clientes', ruta: 'lista-clientes' },
-        { etiqueta: 'Lista de Freelancers', ruta: 'lista-freelancers' },
-      ],
-    },
-    {
-      etiqueta: 'Categoria',
-      subOpciones: [
-        { etiqueta: 'Registrar Categoria', ruta: 'registro-categoria' },
-        { etiqueta: 'Editar Categoria', ruta: 'editar-categoria' },
-        { etiqueta: 'Activar/Desactivar Categoria', ruta: 'activar-desactivar-categoria' },
-        { etiqueta: 'Lista de Categorias', ruta: 'lista-categorias' },
-        { etiqueta: 'Registrar Habilidad', ruta: 'registro-habilidad' },
-        { etiqueta: 'Editar Habilidad', ruta: 'editar-habilidad' },
-        { etiqueta: 'Activar/Desactivar Habilidad', ruta: 'activar-desactivar-habilidad' },
-        { etiqueta: 'Lista de Habilidades', ruta: 'lista-habilidades' },
-        { etiqueta: 'Solicitudes', ruta: 'solicitudes' },
-      ],
+      etiqueta: 'Explorar Proyectos',
+      ruta: 'explorar-proyectos',
     },
 
     {
-      etiqueta: 'Finanzas',
-      subOpciones: [
-        { etiqueta: 'Saldo global', ruta: 'saldo-global' },
-        { etiqueta: 'Cambio de porcentaje', ruta: 'cambio-porcentaje' },
-      ],
+      etiqueta: 'Contratos Activos',
+      ruta: 'contratos-activos',
     },
+
+    { etiqueta: 'Solicitar Habilidad', ruta: 'carga-archivo' },
+    { etiqueta: 'Saldo', ruta: 'saldo' },
     { etiqueta: 'Reportes', ruta: 'reportes' },
-    { etiqueta: 'Cargar Archivos', ruta: 'carga-archivo' },
   ];
 
   protected opcionesMenuPerfil = <MenuOpciones[]>[
