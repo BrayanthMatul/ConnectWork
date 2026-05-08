@@ -1,1 +1,35 @@
-<p>CancelarProyecto works!</p>,
+@if (this.proyectosActivos().length > 0) {
+  <div class="flex flex-1 flex-col font-rubik">
+    <form (submit)="$event.preventDefault(); actualizarEstado()">
+      <h1 class="text-2xl font-bold text-center text-moradoclaro mb-2">Cancelar Proyecto</h1>
+
+      <div
+        class="w-95 bg-white rounded-xl shadow-lg p-8 flex flex-col font-rubik text-grisoscuro gap-5"
+      >
+        <p>Seleccionar proyecto para cancelar</p>
+        <select
+          class="border-2 rounded-full border-grisclaro rounded px-3 py-2 focus:outline-none focus:border-moradoclaro transition"
+          (change)="proyectoSeleccionado.set(toNumber(cmbProyecto.value))"
+          #cmbProyecto
+          required
+        >
+          <option value="0" disabled selected>--Seleccione un Proyecto--</option>
+          @for (proyecto of proyectosActivos(); track proyecto.id) {
+            <option [value]="proyecto.id">
+              {{ proyecto.titulo }} - {{ proyecto.estado.toString() }}
+            </option>
+          }
+        </select>
+
+        <button
+          class="w-full py-2 rounded-full border-2 border-moradooscuro text-moradooscuro font-bold transition hover:bg-moradooscuro hover:text-white cursor-pointer mt-2"
+          type="submit"
+        >
+          Cancelar Proyecto
+        </button>
+      </div>
+    </form>
+  </div>
+} @else {
+  <p class="text-grisoscuro text-center text-xl">No hay proyectos activos para mostrar.</p>
+}
