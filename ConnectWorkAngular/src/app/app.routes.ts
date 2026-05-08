@@ -171,8 +171,34 @@ export const routes: Routes = [
     path: 'freelancer-principal',
     canActivate: [AuthGuard],
     loadComponent: () => import('./pages/FreelancerPrincipal/FreelancerPrincipal'),
-  },
 
+    children: [
+      {
+        path: 'explorar-proyectos',
+        loadComponent: () => import('./components/Freelancer/ExplorarProyectos/ExplorarProyectos'),
+      },
+      {
+        path: 'contratos-activos',
+        loadComponent: () => import('./components/Freelancer/ContratosActivos/ContratosActivos'),
+      },
+
+      {
+        path: 'solicitar-habilidad',
+        loadComponent: () =>
+          import('./components/Freelancer/SolicitarHabilidad/SolicitarHabilidad'),
+      },
+
+      {
+        path: 'saldo',
+        loadComponent: () => import('./components/Freelancer/Saldo/Saldo'),
+      },
+      {
+        path: 'reportes',
+        loadComponent: () =>
+          import('./components/Freelancer/ReportesFreelancer/ReportesFreelancer'),
+      },
+    ],
+  },
   {
     path: 'registro-cliente',
     loadComponent: () => import('./pages/RegistroCliente/RegistroCliente'),
