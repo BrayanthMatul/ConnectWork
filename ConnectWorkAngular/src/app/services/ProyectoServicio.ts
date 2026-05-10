@@ -31,6 +31,10 @@ export class ProyectoServicio {
     return this.http.patch<Respuesta>(this.url, request);
   }
 
+  public obtenerProyectoPorId(id: number): Observable<Proyecto | undefined> {
+    return this.obtenerProyectos().pipe(map((proyectos) => proyectos.find((p) => p.id === id)));
+  }
+
   public obtenerProyectosActivosPorCliente(idCliente: number): Observable<Proyecto[]> {
     return this.obtenerProyectos().pipe(
       map((proyectos) =>
