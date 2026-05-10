@@ -40,6 +40,12 @@ public class JwtFilter implements Filter {
             return;
         }
 
+        // Permitir POST a /api/perfil sin token (registro de nuevos usuarios)
+        if ("POST".equalsIgnoreCase(method) && path.contains("/api/perfil")) {
+            chain.doFilter(request, response);
+            return;
+        }
+
         // Para todas las demás rutas, validar token
         String authHeader = httpRequest.getHeader("Authorization");
 
