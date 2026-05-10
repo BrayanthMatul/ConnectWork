@@ -51,7 +51,7 @@ public class UsuarioServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
         try {
-            if (!PermissionUtil.verificarAdministrador(req, res)) {
+            if (!PermissionUtil.verificarAutenticacion(req, res)) {
                 return;
             }
 
