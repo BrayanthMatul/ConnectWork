@@ -1,0 +1,51 @@
+<div
+  class="bg-white rounded-xl shadow-lg p-6 flex flex-col gap-3 font-rubik border border-grisclaro w-full"
+>
+  <h2 class="text-xl font text-moradoclaro">{{ proyecto().titulo }}</h2>
+
+  <div class="flex flex-row gap-2">
+    <p
+      class="flex items-center gap-2 bg-moradoclaro/10 rounded-full px-3 py-1 text-sm text-moradooscuro"
+    >
+      Fecha Limite: {{ proyecto().fechaLimite }}
+    </p>
+    <p
+      class="flex items-center gap-2 bg-moradoclaro/10 rounded-full px-3 py-1 text-sm text-moradooscuro"
+    >
+      Presupuesto: Q. {{ proyecto().presupuestoMaximo }}
+    </p>
+  </div>
+  <p class="text-moradooscuro">Cliente</p>
+  <p class="text-grisoscuro">{{ cliente() }}</p>
+
+  <p class="text-moradooscuro">Descripción</p>
+  <p class="text-grisoscuro">{{ proyecto().descripcion }}</p>
+
+  <p class="text-moradooscuro">Categoría</p>
+  <p class="text-grisoscuro">{{ categoria() }}</p>
+  @if (habilidades().length > 0) {
+    <p class="text-moradooscuro">Habilidades Requeridas</p>
+    <ul class="list-disc list-inside text-grisoscuro">
+      @for (habilidad of habilidades(); track habilidad) {
+        <li>{{ habilidad }}</li>
+      }
+    </ul>
+  } @else {
+    <p class="text-moradooscuro">Habilidades Requeridas</p>
+    <p class="text-grisoscuro">No se especificaron habilidades requeridas.</p>
+  }
+
+  <button
+    class="self-end py-2 px-4 rounded-full border-1 border-moradooscuro text-moradooscuro transition hover:bg-moradooscuro hover:text-white cursor-pointer mt-4"
+    (click)="postular()"
+  >
+    Postularme
+  </button>
+</div>
+
+<button
+  class="w-full py-2 rounded-full border-2 border-grisclaro text-grisclaro font-bold transition hover:bg-grisclaro hover:text-white cursor-pointer mt-4"
+  (click)="regresar()"
+>
+  Volver a Selección
+</button>
