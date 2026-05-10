@@ -197,6 +197,14 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./components/Freelancer/ReportesFreelancer/ReportesFreelancer'),
       },
+      {
+        path: 'postulacion/:id',
+        loadComponent: () => import('./components/Freelancer/Postulacion/Postulacion'),
+      },
+      {
+        path: 'detalles-proyecto/:id',
+        loadComponent: () => import('./components/Freelancer/DetallesProyecto/DetallesProyecto'),
+      },
     ],
   },
   {
