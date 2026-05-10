@@ -21,7 +21,7 @@ export default class PublicarProyecto {
   private modalService = inject(ModalService);
 
   protected idCliente = signal<number>(0);
-  protected idCategoria = signal<number>(0);
+
   protected titulo = signal<string>('');
   protected descripcion = signal<string>('');
   protected presupuestoMaximo = signal<number>(0);
@@ -32,6 +32,7 @@ export default class PublicarProyecto {
     this.categoriaListaServicio.categoriasConHabilidades(),
   );
 
+  protected idCategoria = signal<number>(0);
   protected categoriaSeleccionada = signal<number>(0);
   protected habilidadSeleccionada = signal<number>(0);
   protected habilidadesSeleccionadas = signal<Habilidad[]>([]);
