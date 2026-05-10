@@ -1,6 +1,7 @@
 package models;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class Freelancer {
     private int idFreelancer;
@@ -9,15 +10,17 @@ public class Freelancer {
     private float calificacion;
     private BigDecimal tarifaHora;
     private Perfil perfil;
+    private List<FreelancerHabilidad> habilidades;
 
     public Freelancer(int idFreelancer, String biografia, String nivelExperiencia, float calificacion,
-            BigDecimal tarifaHora, Perfil perfil) {
+            BigDecimal tarifaHora, Perfil perfil, List<FreelancerHabilidad> habilidades) {
         this.idFreelancer = idFreelancer;
         this.biografia = biografia;
         this.nivelExperiencia = nivelExperiencia;
         this.calificacion = calificacion;
         this.tarifaHora = tarifaHora;
         this.perfil = perfil;
+        this.habilidades = habilidades;
     }
 
     public int getIdFreelancer() {
@@ -42,6 +45,10 @@ public class Freelancer {
 
     public String getNivelExperiencia() {
         return nivelExperiencia;
+    }
+
+    public List<FreelancerHabilidad> getHabilidades() {
+        return habilidades;
     }
 
     public void setIdFreelancer(int idFreelancer) {
