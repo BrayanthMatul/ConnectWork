@@ -87,6 +87,19 @@ CREATE TABLE habilidades (
     FOREIGN KEY (id_categoria) REFERENCES categorias(id)
 );
 
+CREATE TABLE habilidad_solicitudes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL UNIQUE,
+    descripcion VARCHAR(255) NOT NULL,
+    id_categoria INT NOT NULL,
+    id_freelancer INT NOT NULL,
+    aceptada BOOLEAN NOT NULL DEFAULT FALSE,
+    revisada BOOLEAN NOT NULL DEFAULT FALSE,
+
+    FOREIGN KEY (id_categoria) REFERENCES categorias(id),
+    FOREIGN KEY (id_freelancer) REFERENCES freelancers(id_freelancer)
+);
+
 CREATE TABLE freelancer_habilidades (
     id_freelancer INT NOT NULL,
     id_habilidad INT NOT NULL,
