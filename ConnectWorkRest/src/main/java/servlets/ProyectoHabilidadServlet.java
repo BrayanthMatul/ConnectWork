@@ -33,4 +33,5 @@ public class ProyectoHabilidadServlet extends HttpServlet {
             JsonUtil.escribirJson(res, "error", "Error al obtener las habilidades de los proyectos: " + e.getMessage());
         }
     }
+
 }
