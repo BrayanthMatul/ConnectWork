@@ -10,5 +10,5 @@ export interface Proyecto {
   presupuestoMaximo: number;
   fechaLimite: string;
   estado: EstadoProyecto;
-  habilidades: ProyectoHabilidad[];
+  habilidades?: ProyectoHabilidad[];
 }
