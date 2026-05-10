@@ -1,2 +1,15 @@
-<p>Lista works!</p>
-,
+<div class="flex flex-1 flex-col w-full gap-4 ml-10">
+  <h1 class="text-2xl font-bold text-moradoclaro mb-2">Lista de Proyectos</h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    @if (proyectos().length === 0) {
+      <p class="text-center text-grisoscuro">
+        No se encontraron proyectos con los filtros seleccionados.
+      </p>
+    } @else {
+      @for (proyecto of proyectos(); track proyecto.id) {
+        <app-card-proyecto [proyecto]="proyecto"></app-card-proyecto>
+      }
+    }
+  </div>
+</div>

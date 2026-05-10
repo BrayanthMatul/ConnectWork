@@ -1,1 +1,4 @@
-<app-filtro></app-filtro> <app-lista> </app-lista>>
+<div class="flex flex-1 w-full flex-row gap-4 p-10">
+  <app-filtro (filtroActivo)="aplicarFiltro($event)"></app-filtro>
+  <app-lista [proyectos]="proyectosFiltrados()"></app-lista>
+</div>

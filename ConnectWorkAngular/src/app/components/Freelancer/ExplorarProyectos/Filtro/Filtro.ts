@@ -1,38 +1,157 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, output, signal } from '@angular/core';
 import { Habilidad } from '../../../../models/habilidad';
 import { ModalService } from '../../../../services/ModalService';
 import { LoginServicio } from '../../../../services/LoginServicio';
 import { CategoriaListaServicio } from '../../../../services/CategoriaListaServicio';
 
+export interface FiltroProyectos {
+  rangoMinimo?: number;
+  rangoMaximo?: number;
+  idCategoria?: number;
+  habilidadesSeleccionadas?: Habilidad[];
+  rangoActivo: boolean;
+  categoriaActiva: boolean;
+}
 @Component({
   selector: 'app-filtro',
   imports: [],
   templateUrl: './Filtro.html',
 })
 export class Filtro {
-  private categoriaListaServicio = inject(CategoriaListaServicio);
-  private loginServicio = inject(LoginServicio);
-  private modalService = inject(ModalService);
+  public filtroActivo = output<FiltroProyectos>();
 
-  protected categoriaSeleccionada = signal<number>(0);
   protected habilidadSeleccionada = signal<number>(0);
   protected habilidadesSeleccionadas = signal<Habilidad[]>([]);
   protected habilidadesDeCategoria = signal<Habilidad[]>([]);
-  protected idCategoria = signal<number>(0);
 
+  protected rangoActivo = signal<boolean>(false);
+  protected rangoMinimo = signal<number>(100);
+  protected rangoMaximo = signal<number>(2000);
+
+  protected idCategoriaSeleccionada = signal<number>(0);
+  protected categoriaActiva = signal<boolean>(false);
   protected categoriasConHabilidades = computed(() =>
     this.categoriaListaServicio.categoriasConHabilidades(),
   );
 
+  private categoriaListaServicio = inject(CategoriaListaServicio);
+  private modalService = inject(ModalService);
+
+  ngOnInit() {
+    this.categoriaListaServicio.cargarDatos();
+    this.filtrarInicial();
+  }
+
+  private filtrarInicial() {
+    const filtroInicial: FiltroProyectos = {
+      rangoActivo: false,
+      categoriaActiva: false,
+    };
+
+    this.filtroActivo.emit(filtroInicial);
+  }
+
+  protected aplicarFiltroRango() {
+    this.rangoActivo.set(true);
+
+    const filtro: FiltroProyectos = {
+      rangoMinimo: this.rangoMinimo(),
+      rangoMaximo: this.rangoMaximo(),
+      idCategoria: this.categoriaActiva() ? this.idCategoriaSeleccionada() : undefined,
+      habilidadesSeleccionadas: this.habilidadesSeleccionadas(),
+      rangoActivo: this.rangoActivo(),
+      categoriaActiva: this.categoriaActiva(),
+    };
+
+    this.filtroActivo.emit(filtro);
+  }
+
+  protected limpiarFiltroRango() {
+    this.rangoMinimo.set(100);
+    this.rangoMaximo.set(2000);
+    this.rangoActivo.set(false);
+
+    const filtro: FiltroProyectos = {
+      idCategoria: this.idCategoriaSeleccionada(),
+      habilidadesSeleccionadas: this.habilidadesSeleccionadas(),
+      rangoActivo: this.rangoActivo(),
+      categoriaActiva: this.categoriaActiva(),
+    };
+
+    this.filtroActivo.emit(filtro);
+  }
+
+  protected aplicarFiltroCategoria() {
+    if (this.idCategoriaSeleccionada() !== 0) {
+      this.categoriaActiva.set(true);
+
+      const filtro: FiltroProyectos = {
+        rangoMinimo: this.rangoMinimo(),
+        rangoMaximo: this.rangoMaximo(),
+        idCategoria: this.idCategoriaSeleccionada(),
+        habilidadesSeleccionadas: this.habilidadesSeleccionadas(),
+        rangoActivo: this.rangoActivo(),
+        categoriaActiva: this.categoriaActiva(),
+      };
+
+      this.filtroActivo.emit(filtro);
+    } else {
+      this.modalService.abrirAdvertencia(
+        'Debe seleccionar una categoría para aplicar el filtro de categoría.',
+      );
+    }
+  }
+
+  protected limpiarFiltroCategoria() {
+    this.idCategoriaSeleccionada.set(0);
+    this.habilidadSeleccionada.set(0);
+    this.habilidadesSeleccionadas.set([]);
+    this.habilidadesDeCategoria.set([]);
+    this.idCategoriaSeleccionada.set(0);
+    this.categoriaActiva.set(false);
+
+    const filtro: FiltroProyectos = {
+      rangoMinimo: this.rangoMinimo(),
+      rangoMaximo: this.rangoMaximo(),
+      rangoActivo: this.rangoActivo(),
+      categoriaActiva: this.categoriaActiva(),
+    };
+
+    this.filtroActivo.emit(filtro);
+  }
+
+  protected limipiarFiltros() {
+    this.rangoMinimo.set(100);
+    this.rangoMaximo.set(2000);
+    this.rangoActivo.set(false);
+
+    this.idCategoriaSeleccionada.set(0);
+    this.habilidadSeleccionada.set(0);
+    this.habilidadesSeleccionadas.set([]);
+    this.habilidadesDeCategoria.set([]);
+    this.categoriaActiva.set(false);
+
+    const filtro: FiltroProyectos = {
+      rangoMinimo: this.rangoMinimo(),
+      rangoMaximo: this.rangoMaximo(),
+      idCategoria: undefined,
+      habilidadesSeleccionadas: [],
+      rangoActivo: false,
+      categoriaActiva: false,
+    };
+
+    this.filtroActivo.emit(filtro);
+  }
+
   protected actualizarCategoria() {
-    this.idCategoria.set(this.categoriaSeleccionada());
+    this.categoriaActiva.set(true);
     this.actualiazarHabilidades();
   }
 
   private actualiazarHabilidades() {
     this.habilidadesSeleccionadas.set([]);
     const categoria = this.categoriasConHabilidades().find(
-      (c) => c.id === this.categoriaSeleccionada(),
+      (c) => c.id === this.idCategoriaSeleccionada(),
     );
     if (categoria) {
       this.habilidadesDeCategoria.set(categoria.habilidades);

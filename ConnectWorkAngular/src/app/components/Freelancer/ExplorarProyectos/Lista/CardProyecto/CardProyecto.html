@@ -1,0 +1,27 @@
+<div
+  class="bg-white rounded-xl shadow-lg p-6 flex flex-col gap-3 font-rubik border border-grisclaro w-full"
+>
+  <h2 class="text-xl font text-moradoclaro">{{ proyecto().titulo }}</h2>
+  <div class="flex flex-row gap-2">
+    <p
+      class="flex items-center gap-2 bg-moradoclaro/10 rounded-full px-3 py-1 text-sm text-moradooscuro"
+    >
+      Fecha Limite: {{ proyecto().fechaLimite }}
+    </p>
+    <p
+      class="flex items-center gap-2 bg-moradoclaro/10 rounded-full px-3 py-1 text-sm text-moradooscuro"
+    >
+      Presupuesto: Q. {{ proyecto().presupuestoMaximo }}
+    </p>
+  </div>
+
+  <p class="text-grisoscuro">{{ proyecto().descripcion }}</p>
+
+  <button
+    (click)="verDetalles()"
+    type="button"
+    class="self-end py-2 px-4 rounded-full border-1 border-moradooscuro text-moradooscuro transition hover:bg-moradooscuro hover:text-white cursor-pointer mt-4"
+  >
+    Ver Detalles
+  </button>
+</div>

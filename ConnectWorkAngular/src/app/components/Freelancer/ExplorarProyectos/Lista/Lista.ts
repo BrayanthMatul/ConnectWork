@@ -1,9 +1,16 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
+import { Proyecto } from '../../../../models/proyecto';
+import { CardProyecto } from './CardProyecto/CardProyecto';
 
 @Component({
   selector: 'app-lista',
-  imports: [],
+  imports: [CardProyecto],
   templateUrl: './Lista.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'flex-1 flex',
+  },
 })
-export class Lista { }
+export class Lista {
+  public proyectos = input.required<Proyecto[]>();
+  protected proyectosUno = signal<Proyecto[]>([]);
+}
