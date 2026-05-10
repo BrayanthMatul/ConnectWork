@@ -19,11 +19,11 @@ public class FreelancerDAO {
             ps.setFloat(4, freelancerNuevo.getCalificacion());
             ps.setBigDecimal(5, freelancerNuevo.getTarifaHora());
             ps.executeUpdate();
+
+            PerfilDAO perfilDAO = new PerfilDAO();
+            perfilDAO.marcarPerfilComoCompleto(freelancerNuevo.getIdFreelancer());
         } catch (SQLException e) {
             throw new SQLException("Error al registrar el nuevo freelancer: " + e.getMessage(), e);
         }
-
-        PerfilDAO perfilDAO = new PerfilDAO();
-        perfilDAO.marcarPerfilComoCompleto(freelancerNuevo.getIdFreelancer());
     }
 }
