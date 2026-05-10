@@ -1,3 +1,4 @@
+import { FreelancerHabilidad } from './freelancer-habilidad';
 import { Perfil } from './perfil';
 
 export interface Freelancer {
@@ -7,4 +8,5 @@ export interface Freelancer {
   calificacion: number;
   tarifaHora: number;
   perfil: Perfil;
+  habilidades: FreelancerHabilidad[];
 }
