@@ -19,9 +19,16 @@ export default class FreelancerPrincipal {
     },
 
     {
-      etiqueta: 'Contratos Activos',
-      ruta: 'contratos-activos',
+      etiqueta: 'Envios',
+      subOpciones: [
+        { etiqueta: 'Propuestas pendientes', ruta: 'propuestas-pendientes' },
+        { etiqueta: 'Propuestas aceptadas', ruta: 'propuestas-aceptadas' },
+        { etiqueta: 'Propuestas rechazadas', ruta: 'propuestas-rechazadas' },
+        { etiqueta: 'Entregas enviadas', ruta: 'contratos-activos/pendientes' },
+      ],
     },
+
+    { etiqueta: 'Contratos activos', ruta: 'contratos-activos' },
 
     { etiqueta: 'Solicitar Habilidad', ruta: 'solicitar-habilidad' },
     { etiqueta: 'Saldo', ruta: 'saldo' },
