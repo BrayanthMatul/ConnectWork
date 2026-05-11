@@ -1,12 +1,16 @@
 import { Component, computed, inject, input, signal } from '@angular/core';
 import { Proyecto } from '../../../models/proyecto';
-import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriaListaServicio } from '../../../services/CategoriaListaServicio';
 import { UsuarioServicio } from '../../../services/UsuarioServicio';
 import { ProyectoServicio } from '../../../services/ProyectoServicio';
 import { EstadoProyecto } from '../../../enums/estado-proyecto';
+import { EstadoPropuesta } from '../../../enums/estado-propuesta';
 import { ProyectoHabilidadServicio } from '../../../services/ProyectoHabilidadServicio';
+import { FreelancerHabilidadServicio } from '../../../services/FreelancerHabilidadServicio';
+import { LoginServicio } from '../../../services/LoginServicio';
+import { ModalService } from '../../../services/ModalService';
+import { PropuestaServicio } from '../../../services/PropuestaServicio';
 
 @Component({
   selector: 'app-detalles-proyecto',
@@ -14,12 +18,19 @@ import { ProyectoHabilidadServicio } from '../../../services/ProyectoHabilidadSe
   templateUrl: './DetallesProyecto.html',
 })
 export default class DetallesProyecto {
-  private http = inject(HttpClient);
-  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private activateRoute = inject(ActivatedRoute);
   private proyectoHabilidadServicio = inject(ProyectoHabilidadServicio);
   private categoriaListaServicio = inject(CategoriaListaServicio);
   private proyectoServicio = inject(ProyectoServicio);
   private usuarioServicio = inject(UsuarioServicio);
+  private freelancerHabilidadServicio = inject(FreelancerHabilidadServicio);
+  private loginServicio = inject(LoginServicio);
+  private modalServicio = inject(ModalService);
+  private propuestaServicio = inject(PropuestaServicio);
+
+  protected idFreelancer = signal<number>(0);
+
   public proyecto = signal<Proyecto>({
     id: 0,
     idCliente: 0,
@@ -33,28 +44,35 @@ export default class DetallesProyecto {
   protected cliente = signal<string>('');
   protected categoria = signal<string>('');
   protected habilidades = signal<string[]>([]);
+  protected habilidadesFreelancer = signal<number[]>([]);
+  protected habilidadesProyecto = signal<number[]>([]);
   protected categoriaConHabilidades = computed(() =>
     this.categoriaListaServicio.categoriasConHabilidades(),
   );
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = this.activateRoute.snapshot.paramMap.get('id');
     this.proyectoServicio.obtenerProyectoPorId(Number(id)).subscribe((proyecto) => {
       if (proyecto) {
         this.proyecto.set(proyecto);
-        console.log('Proyecto obtenido:', proyecto);
-        console.log('Proyecto ya seteado:', this.proyecto());
         this.cargarDetalles();
       }
     });
+
+    this.idFreelancer.set(this.loginServicio.getUsuario()!.id);
+
+    // Cargar habilidades del freelancer
+    this.freelancerHabilidadServicio
+      .obtenerHabilidadesPorFreelancer(this.idFreelancer())
+      .subscribe((habilidades) => {
+        this.habilidadesFreelancer.set(habilidades.map((h) => h.idHabilidad));
+      });
   }
 
   private cargarDetalles() {
     this.categoriaListaServicio.cargarDatos();
-    console.log('Cargando proyecto ', this.proyecto());
 
     this.usuarioServicio.obtenerUsuarioPorId(this.proyecto().idCliente).subscribe((usuario) => {
-      console.log('Usuario obtenido:', usuario);
       if (usuario === undefined) {
         this.cliente.set('Desconocido');
       } else {
@@ -66,6 +84,9 @@ export default class DetallesProyecto {
       const habilidadesProyecto = proyectoHabilidades.filter(
         (ph) => ph.idProyecto === this.proyecto().id,
       );
+      // Guardar los IDs de habilidades del proyecto
+      this.habilidadesProyecto.set(habilidadesProyecto.map((h) => h.idHabilidad));
+
       const nombresHabilidades = habilidadesProyecto.map((ph) => {
         const categoria = this.categoriaConHabilidades().find(
           (cat) => cat.id === this.proyecto().idCategoria,
@@ -89,7 +110,74 @@ export default class DetallesProyecto {
     }
   }
 
-  protected postular() {}
+  protected postular() {
+    if (this.validarPostulacion()) {
+      // Verificar si ya existe una propuesta activa del freelancer para este proyecto
+      this.propuestaServicio.obtenerPropuestas().subscribe({
+        next: (propuestas) => {
+          const propuestaActiva = propuestas.find(
+            (p) =>
+              p.idProyecto === this.proyecto().id &&
+              p.idFreelancer === this.idFreelancer() &&
+              p.estado !== EstadoPropuesta.RECHAZADA,
+          );
+
+          if (propuestaActiva) {
+            this.modalServicio.abrirError('Ya se envio una propuesta a este proyecto');
+            return;
+          }
+
+          // Si no existe propuesta activa, proceder a navegar
+          this.router.navigate(['/freelancer-principal/postulacion', this.proyecto().id]);
+        },
+        error: (err) => {
+          this.modalServicio.abrirError('Error al verificar propuestas: ' + err.message);
+        },
+      });
+    }
+  }
+
+  private validarPostulacion(): boolean {
+    return this.categoriaCorrecta();
+  }
+
+  private categoriaCorrecta(): boolean {
+    const habilidadesProyectoIds = this.habilidadesProyecto();
+    const habilidadesFreelancerIds = this.habilidadesFreelancer();
+
+    if (habilidadesProyectoIds.length > 0) {
+      const tieneHabilidadCoincidente = habilidadesFreelancerIds.some((idHabilidad) =>
+        habilidadesProyectoIds.includes(idHabilidad),
+      );
+
+      if (tieneHabilidadCoincidente) {
+        return true;
+      } else {
+        this.modalServicio.abrirAdvertencia(
+          'No te puedes postular, no tienes las habilidades requeridas para este proyecto.',
+        );
+        return false;
+      }
+    } else {
+      // Si el proyecto NO tiene habilidades asociadas, verificar que la categoría coincida
+      const categoriaProyecto = this.proyecto().idCategoria;
+
+      // Obtener la categoría de cada habilidad del freelancer
+      const categoriaFreelancer = habilidadesFreelancerIds.some((idHabilidad) => {
+        const categoria = this.categoriaListaServicio.categoriaPorIdHabilidad(idHabilidad);
+        return categoria && categoria.id === categoriaProyecto;
+      });
+
+      if (categoriaFreelancer) {
+        return true;
+      } else {
+        this.modalServicio.abrirAdvertencia(
+          'No te puedes postular, no tienes las habilidades requeridas para este proyecto.',
+        );
+        return false;
+      }
+    }
+  }
 
   protected regresar() {
     window.history.back();
