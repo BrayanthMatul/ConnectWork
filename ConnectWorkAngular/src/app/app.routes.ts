@@ -78,8 +78,14 @@ export const routes: Routes = [
           import('./components/Administrador/Categoria/ActivarDesactivarHabilidad/ActivarDesactivarHabilidad'),
       },
       {
-        path: 'solicitudes',
-        loadComponent: () => import('./components/Administrador/Categoria/Solicitudes/Solicitudes'),
+        path: 'solicitudes-categoria',
+        loadComponent: () =>
+          import('./components/Administrador/Categoria/SolicitudCategoria/SolicitudCategoria'),
+      },
+      {
+        path: 'solicitudes-habilidad',
+        loadComponent: () =>
+          import('./components/Administrador/Categoria/SolicitudHabilidad/SolicitudHabilidad'),
       },
 
       {
@@ -176,6 +182,22 @@ export const routes: Routes = [
       {
         path: 'explorar-proyectos',
         loadComponent: () => import('./components/Freelancer/ExplorarProyectos/ExplorarProyectos'),
+      },
+
+      {
+        path: 'propuestas-aceptadas',
+        loadComponent: () =>
+          import('./components/Freelancer/Envios/PropuestasAceptadas/PropuestasAceptadas'),
+      },
+      {
+        path: 'propuestas-pendientes',
+        loadComponent: () =>
+          import('./components/Freelancer/Envios/PropuestasPendientes/PropuestasPendientes'),
+      },
+      {
+        path: 'propuestas-rechazadas',
+        loadComponent: () =>
+          import('./components/Freelancer/Envios/PropuestasRechazadas/PropuestasRechazadas'),
       },
       {
         path: 'contratos-activos',
