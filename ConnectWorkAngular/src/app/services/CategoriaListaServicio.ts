@@ -58,4 +58,12 @@ export class CategoriaListaServicio {
       },
     });
   }
+
+  public categoriaPorIdHabilidad(idHabilidad: number): Categoria | undefined {
+    const habilidad = this.habilidades().find((h) => h.id === idHabilidad);
+    if (habilidad) {
+      return this.categorias().find((c) => c.id === habilidad.idCategoria);
+    }
+    return undefined;
+  }
 }
