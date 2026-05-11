@@ -33,7 +33,8 @@ export default class AdministradorPrincipal {
         { etiqueta: 'Editar Habilidad', ruta: 'editar-habilidad' },
         { etiqueta: 'Activar/Desactivar Habilidad', ruta: 'activar-desactivar-habilidad' },
         { etiqueta: 'Lista de Habilidades', ruta: 'lista-habilidades' },
-        { etiqueta: 'Solicitudes', ruta: 'solicitudes' },
+        { etiqueta: 'Solicitudes de Categoria', ruta: 'solicitudes-categoria' },
+        { etiqueta: 'Solicitudes de Habilidad', ruta: 'solicitudes-habilidad' },
       ],
     },
 
