@@ -1,9 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
 import { ModalService } from '../../../services/ModalService';
-import { HabilidadServicio } from '../../../services/HabilidadServicio';
 import { CategoriaServicio } from '../../../services/CategoriaServicio';
+import { HabilidadSolicitudServicio } from '../../../services/HabilidadSolicitudServicio';
 import { Categoria } from '../../../models/categoria';
-import { Habilidad } from '../../../models/habilidad';
+import { HabilidadSolicitud } from '../../../models/habilidad-solicitud';
+import { LoginServicio } from '../../../services/LoginServicio';
 
 @Component({
   selector: 'app-solicitar-habilidad',
@@ -14,13 +15,21 @@ export default class SolicitarHabilidad {
   protected nombre = signal<string>('');
   protected descripcion = signal<string>('');
   protected categoriasServicio = inject(CategoriaServicio);
-  private habilidadServicio = inject(HabilidadServicio);
   private modalServicio = inject(ModalService);
+  private loginServicio = inject(LoginServicio);
+  private habilidadSolicitudServicio = inject(HabilidadSolicitudServicio);
   protected categorias = signal<Categoria[]>([]);
   protected categoriaSeleccionada = signal<number>(0);
+  private idFreelancer = signal<number>(0);
 
   ngOnInit() {
     this.cargarCategorias();
+    const idFreelancer = this.loginServicio.getUsuario()?.id;
+    if (idFreelancer) {
+      this.idFreelancer.set(idFreelancer);
+    } else {
+      this.modalServicio.abrirError('No se pudo obtener la información del freelancer');
+    }
   }
 
   private cargarCategorias() {
@@ -35,21 +44,23 @@ export default class SolicitarHabilidad {
   }
 
   protected registrarSolicitud() {
-    const habilidad: Habilidad = {
+    const habilidad: HabilidadSolicitud = {
       id: 0,
       idCategoria: this.categoriaSeleccionada(),
       nombre: this.nombre(),
       descripcion: this.descripcion(),
-      activo: true,
+      idFreelancer: this.idFreelancer(),
+      aceptada: false,
+      revisada: false,
     };
 
-    this.habilidadServicio.registrarHabilidad(habilidad).subscribe({
+    this.habilidadSolicitudServicio.registrarSolicitud(habilidad).subscribe({
       next: (respuesta) => {
-        this.modalServicio.abrirExito(respuesta.valor);
+        this.modalServicio.abrirExito('Solicitud de habilidad registrada correctamente');
         this.limpiarFormulario();
       },
       error: (error) => {
-        this.modalServicio.abrirError(error.error.valor);
+        this.modalServicio.abrirError('Error al registrar la solicitud de habilidad');
       },
     });
   }
