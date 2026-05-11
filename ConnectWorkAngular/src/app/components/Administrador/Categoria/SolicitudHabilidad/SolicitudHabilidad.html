@@ -1,0 +1,54 @@
+@if (solicitudes().length > 0) {
+  <div class="flex flex-col items-center">
+    <h2 class="text-2xl font-bold text-moradoclaro mb-2">Solicitudes de Habilidades</h2>
+  </div>
+  <section class="w-full bg-white rounded-xl shadow-lg p-8 font-rubik">
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-separate border-spacing-y-2">
+        <thead>
+          <tr class="text-moradooscuro">
+            <th class="px-4 py-3 font-normal">Nombre</th>
+            <th class="px-4 py-3 font-normal">Descripción</th>
+            <th class="px-4 py-3 font-normal">Categoría</th>
+            <th class="px-4 py-3 font-normal">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (solicitud of solicitudes(); track solicitud.id) {
+            <tr class="bg-fondo hover:bg-grisclaro/30 transition-colors duration-200">
+              <td class="px-4 py-4 rounded-l-full text-grisoscuro font-medium">
+                {{ solicitud.nombre }}
+              </td>
+              <td class="px-4 py-4 text-grisoscuro">
+                {{ solicitud.descripcion }}
+              </td>
+              <td class="px-4 py-4 text-grisoscuro">
+                {{ solicitud.nombreCategoria }}
+              </td>
+              <td class="px-4 py-4 rounded-r-full text-grisoscuro">
+                <div class="flex gap-2">
+                  <button
+                    (click)="aceptarSolicitud(solicitud)"
+                    class="p-2 bg-moradoclaro/10 text-moradooscuro rounded-full hover:bg-moradoclaro/20 transition-colors duration-200"
+                    title="Aceptar"
+                  >
+                    <i class="pi pi-check text-lg"></i>
+                  </button>
+                  <button
+                    (click)="rechazarSolicitud(solicitud)"
+                    class="p-2 bg-moradoclaro/10 text-moradooscuro rounded-full hover:bg-moradoclaro/20 transition-colors duration-200"
+                    title="Rechazar"
+                  >
+                    <i class="pi pi-times text-lg"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+} @else {
+  <p class="text-grisoscuro text-center text-xl">No hay solicitudes de habilidades por revisar.</p>
+}
