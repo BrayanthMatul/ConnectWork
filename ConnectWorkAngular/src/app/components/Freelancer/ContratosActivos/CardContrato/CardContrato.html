@@ -1,0 +1,34 @@
+<div
+  class="bg-white rounded-xl shadow-lg p-6 flex flex-col gap-3 font-rubik border border-grisclaro w-full"
+>
+  <h2 class="text-xl font-semibold text-moradoclaro">{{ nombreProyecto() }}</h2>
+
+  <div class="flex flex-row gap-2">
+    <p
+      class="flex items-center gap-2 bg-moradoclaro/10 rounded-full px-3 py-1 text-sm text-moradooscuro"
+    >
+      Fecha Inicio: {{ contrato().fechaInicio }}
+    </p>
+    <p
+      class="flex items-center gap-2 bg-moradoclaro/10 rounded-full px-3 py-1 text-sm text-moradooscuro"
+    >
+      Monto: Q. {{ contrato().monto }}
+    </p>
+  </div>
+
+  <div class="flex flex-row gap-2">
+    <p
+      class="flex items-center gap-2 bg-moradoclaro/10 rounded-full px-3 py-1 text-sm text-moradooscuro"
+    >
+      Plazo de Entrega: {{ plazoEntrega() }} días
+    </p>
+  </div>
+
+  <button
+    (click)="agregarEntrega()"
+    type="button"
+    class="self-end py-2 px-4 rounded-full border-1 border-moradooscuro text-moradooscuro transition hover:bg-moradooscuro hover:text-white cursor-pointer mt-4"
+  >
+    Agregar Entrega
+  </button>
+</div>
