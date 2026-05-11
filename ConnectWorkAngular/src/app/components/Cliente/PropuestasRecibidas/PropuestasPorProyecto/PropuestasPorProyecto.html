@@ -1,0 +1,11 @@
+<div class="flex flex-col gap-4">
+  <h1 class="text-2xl font-semibold text-moradoclaro">{{ nombreProyecto() }}</h1>
+
+  @for (propuesta of propuestasLocales(); track propuesta.id) {
+    <app-card-propuesta
+      [propuesta]="propuesta"
+      (idEliminacion)="eliminarPropuesta($event)"
+      (idAceptacion)="aceptarPropuestaEmit($event)"
+    ></app-card-propuesta>
+  }
+</div>
