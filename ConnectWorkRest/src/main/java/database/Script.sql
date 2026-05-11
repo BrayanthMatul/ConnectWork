@@ -69,7 +69,7 @@ CREATE TABLE categorias (
 
 CREATE TABLE categoria_solicitudes (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(255) NOT NULL UNIQUE, 
+    nombre VARCHAR(255) NOT NULL, 
     descripcion VARCHAR(255) NOT NULL,
     id_cliente INT NOT NULL,
     aceptada BOOLEAN NOT NULL DEFAULT FALSE,
@@ -89,7 +89,7 @@ CREATE TABLE habilidades (
 
 CREATE TABLE habilidad_solicitudes (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(255) NOT NULL UNIQUE,
+    nombre VARCHAR(255) NOT NULL,
     descripcion VARCHAR(255) NOT NULL,
     id_categoria INT NOT NULL,
     id_freelancer INT NOT NULL,
@@ -137,7 +137,7 @@ CREATE TABLE propuestas (
     monto_ofertado DECIMAL(10, 2) NOT NULL,
     mensaje TEXT NOT NULL,
     fecha_hora DATETIME NOT NULL,
-    plazoEntrega INT NOT NULL,
+    plazo_entrega INT NOT NULL,
     estado VARCHAR(50) NOT NULL,
 
     FOREIGN KEY (id_proyecto) REFERENCES proyectos(id),
@@ -161,7 +161,8 @@ CREATE TABLE entregas (
     descripcion TEXT NOT NULL,
     archivo_url VARCHAR(255) NOT NULL,
     fecha_hora DATETIME NOT NULL,
-    estado VARCHAR(50) NOT NULL,
+    aceptado BOOLEAN NOT NULL DEFAULT FALSE,
+    revisado BOOLEAN NOT NULL DEFAULT FALSE,
     motivo_rechazo TEXT,
 
     FOREIGN KEY (id_contrato) REFERENCES contratos(id)

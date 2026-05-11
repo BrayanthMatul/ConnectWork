@@ -15,15 +15,27 @@ public class Propuesta {
     private int plazoEntrega;
     private EstadoPropuesta estado;
 
-    public Propuesta(int id, int idProyecto, int idFreelancer, BigDecimal montoOfertado, String mensaje, LocalDateTime fechaHora, int plazoEntrega, EstadoPropuesta estado) {
+    public Propuesta(int id, int idProyecto, int idFreelancer, BigDecimal montoOfertado, String mensaje,
+            int plazoEntrega, EstadoPropuesta estado) {
         this.id = id;
         this.idProyecto = idProyecto;
         this.idFreelancer = idFreelancer;
         this.montoOfertado = montoOfertado;
         this.mensaje = mensaje;
-        this.fechaHora = fechaHora;
         this.plazoEntrega = plazoEntrega;
         this.estado = estado;
+    }
+
+    public Propuesta(int id, int idProyecto, int idFreelancer, BigDecimal montoOfertado, String mensaje,
+            int plazoEntrega, EstadoPropuesta estado, LocalDateTime fechaHora) {
+        this.id = id;
+        this.idProyecto = idProyecto;
+        this.idFreelancer = idFreelancer;
+        this.montoOfertado = montoOfertado;
+        this.mensaje = mensaje;
+        this.plazoEntrega = plazoEntrega;
+        this.estado = estado;
+        this.fechaHora = fechaHora;
     }
 
     public int getId() {
@@ -57,6 +69,5 @@ public class Propuesta {
     public EstadoPropuesta getEstado() {
         return estado;
     }
-    
-}
 
+}

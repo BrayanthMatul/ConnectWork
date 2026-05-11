@@ -2,8 +2,6 @@ package models;
 
 import java.time.LocalDateTime;
 
-import enums.EstadoContrato;
-
 public class Entrega {
 
     private int id;
@@ -11,16 +9,19 @@ public class Entrega {
     private String descripcion;
     private String archivoUrl;
     private LocalDateTime fechaHora;
-    private EstadoContrato estado;
+    private boolean aceptado;
+    private boolean revisado;
     private String motivoRechazo;
 
-    public Entrega(int id, int idContrato, String descripcion, String archivoUrl, LocalDateTime fechaHora, EstadoContrato estado, String motivoRechazo) {
+    public Entrega(int id, int idContrato, String descripcion, String archivoUrl, LocalDateTime fechaHora,
+            boolean aceptado, boolean revisado, String motivoRechazo) {
         this.id = id;
         this.idContrato = idContrato;
         this.descripcion = descripcion;
         this.archivoUrl = archivoUrl;
         this.fechaHora = fechaHora;
-        this.estado = estado;
+        this.aceptado = aceptado;
+        this.revisado = revisado;
         this.motivoRechazo = motivoRechazo;
     }
 
@@ -44,8 +45,12 @@ public class Entrega {
         return fechaHora;
     }
 
-    public EstadoContrato getEstado() {
-        return estado;
+    public boolean isAceptado() {
+        return aceptado;
+    }
+
+    public boolean isRevisado() {
+        return revisado;
     }
 
     public String getMotivoRechazo() {
@@ -72,12 +77,16 @@ public class Entrega {
         this.fechaHora = fechaHora;
     }
 
-    public void setEstado(EstadoContrato estado) {
-        this.estado = estado;
+    public void setAceptado(boolean aceptado) {
+        this.aceptado = aceptado;
+    }
+
+    public void setRevisado(boolean revisado) {
+        this.revisado = revisado;
     }
 
     public void setMotivoRechazo(String motivoRechazo) {
         this.motivoRechazo = motivoRechazo;
     }
-    
+
 }
