@@ -1,4 +1,4 @@
-import { EstadoPropuesta } from '../enums/estado-presupuesto';
+import { EstadoPropuesta } from '../enums/estado-propuesta';
 
 export interface Propuesta {
   id: number;
@@ -6,7 +6,7 @@ export interface Propuesta {
   idFreelancer: number;
   montoOfertado: number;
   mensaje: string;
-  fechaHora: Date;
+  fechaHora: string;
   plazoEntrega: number;
   estado: EstadoPropuesta;
 }
